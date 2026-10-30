@@ -49,6 +49,8 @@ export interface Project {
   readonly id: string;
   readonly name: string;
   readonly hue: ProjectHue;
+  /** Its main trait in one or two words (AI, AWS, MQTT…), shown as a tag on the card. */
+  readonly tag: Localized;
   readonly tagline: Localized;
   readonly description: Localized;
   readonly highlights: readonly Localized[];

@@ -22,7 +22,10 @@ export function ProjectDetail({ project }: { project: Project }): React.JSX.Elem
     >
       <div className={styles.detailHead}>
         <div className={styles.detailTitle}>
-          <StatusLabel status={project.status} />
+          <div className={styles.detailMeta}>
+            <p className={styles.tag}>{pick(project.tag, lang)}</p>
+            <StatusLabel status={project.status} />
+          </div>
           <p className={styles.detailName}>{project.name}</p>
           <p className={styles.tagline}>{pick(project.tagline, lang)}</p>
         </div>

@@ -18,7 +18,7 @@ interface ProjectCardProps {
 }
 
 /**
- * A folded project: name, short description and main technologies. The name is the button
+ * A folded project: its tag, name, short description and main technologies. The name is the button
  * (inside the heading, the accordion pattern); its hit area covers the whole card.
  */
 export function ProjectCard({
@@ -31,6 +31,7 @@ export function ProjectCard({
 
   return (
     <article className={styles.card} style={hueStyle(project)} data-open={isOpen}>
+      <p className={styles.tag}>{pick(project.tag, lang)}</p>
       <h3>
         <button
           type="button"

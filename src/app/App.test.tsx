@@ -59,13 +59,14 @@ describe("App", () => {
     expect(screen.getByRole("button", { name: "Cambiar a tema claro" })).toBeInTheDocument();
   });
 
-  it("shows each project folded: name, short description and main technologies", () => {
+  it("shows each project folded: tag, name, short description and main technologies", () => {
     render(<App />);
     for (const project of projects) {
       const card = screen.getByRole("button", { name: project.name });
       expect(card).toHaveAttribute("aria-expanded", "false");
       const article = card.closest("article");
       expect(article).not.toBeNull();
+      expect(article).toHaveTextContent(project.tag.es);
       expect(article).toHaveTextContent(project.tagline.es);
       for (const item of project.stack.slice(0, 4)) {
         expect(article).toHaveTextContent(item);

@@ -21,6 +21,7 @@ export const projects: readonly Project[] = [
     id: "lumosnet",
     name: "LumosNet",
     hue: "tfm",
+    tag: { es: "IA – Imágenes", en: "AI – Images" },
     tagline: {
       es: "Detección temprana de osteopenia lumbar en radiografías convencionales",
       en: "Early detection of lumbar osteopenia in plain X-rays",
@@ -78,6 +79,7 @@ export const projects: readonly Project[] = [
     id: "incontext",
     name: "InContext",
     hue: "context",
+    tag: { es: "IA – Texto", en: "AI – Text" },
     tagline: {
       es: "Las noticias políticas de cada comunidad autónoma, con su contexto",
       en: "Political news from each Spanish region, in context",
@@ -131,6 +133,7 @@ export const projects: readonly Project[] = [
     id: "energy-analyzer",
     name: "Energy Analyzer",
     hue: "energy",
+    tag: { es: "AWS", en: "AWS" },
     tagline: {
       es: "Cuánto te habría costado tu consumo eléctrico con otra tarifa",
       en: "What your electricity use would have cost on another tariff",
@@ -156,6 +159,7 @@ export const projects: readonly Project[] = [
     id: "ev-charging-iot",
     name: "EV charging IoT",
     hue: "ev",
+    tag: { es: "MQTT", en: "MQTT" },
     tagline: {
       es: "Monitorización en tiempo real de los puntos de recarga públicos de Finlandia",
       en: "Real-time monitoring of Finland's public EV charging points",
@@ -181,6 +185,7 @@ export const projects: readonly Project[] = [
     id: "stock-app",
     name: "Stock app",
     hue: "stocks",
+    tag: { es: "App móvil", en: "Mobile app" },
     tagline: {
       es: "Una app para aprender a invertir que explica, no recomienda",
       en: "An app to learn investing that explains rather than recommends",
