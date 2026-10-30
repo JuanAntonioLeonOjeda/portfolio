@@ -52,6 +52,7 @@ export interface Project {
   readonly tagline: Localized;
   readonly description: Localized;
   readonly highlights: readonly Localized[];
+  /** Most important first: the folded card shows only the first four. */
   readonly stack: readonly string[];
   readonly status: ProjectStatus;
   readonly stats?: readonly ProjectStat[];

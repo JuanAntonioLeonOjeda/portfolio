@@ -59,41 +59,89 @@ describe("App", () => {
     expect(screen.getByRole("button", { name: "Cambiar a tema claro" })).toBeInTheDocument();
   });
 
-  it("links every public repository and website, in a new tab", () => {
+  it("shows each project folded: name, short description and main technologies", () => {
     render(<App />);
-    const hrefs = projects.flatMap((project) => [
-      ...(project.code ?? []).map((link) => link.href),
-      ...(project.site === undefined ? [] : [project.site]),
-    ]);
-    for (const href of hrefs) {
-      const link = document.querySelector(`a[href="${href}"]`);
-      expect(link, href).not.toBeNull();
-      expect(link).toHaveAttribute("target", "_blank");
-      expect(link).toHaveAttribute("rel", "noopener noreferrer");
+    for (const project of projects) {
+      const card = screen.getByRole("button", { name: project.name });
+      expect(card).toHaveAttribute("aria-expanded", "false");
+      const article = card.closest("article");
+      expect(article).not.toBeNull();
+      expect(article).toHaveTextContent(project.tagline.es);
+      for (const item of project.stack.slice(0, 4)) {
+        expect(article).toHaveTextContent(item);
+      }
+    }
+    for (const project of projects) {
+      expect(screen.queryByText(project.description.es), project.id).toBeNull();
     }
   });
 
-  it("says when a project's code is private", () => {
+  it("unfolds a project below the row, switches to another and folds it again", async () => {
+    const user = userEvent.setup();
     render(<App />);
-    const privateCount = projects.filter((project) => (project.code ?? []).length === 0).length;
-    expect(screen.getAllByText("Repositorio privado")).toHaveLength(privateCount);
+    const [first, second] = projects;
+    if (first === undefined || second === undefined) throw new Error("needs two projects");
+    const firstCard = screen.getByRole("button", { name: first.name });
+    const secondCard = screen.getByRole("button", { name: second.name });
+
+    await user.click(firstCard);
+    expect(firstCard).toHaveAttribute("aria-expanded", "true");
+    expect(screen.getByRole("article", { name: first.name })).toHaveTextContent(
+      first.description.es,
+    );
+
+    await user.click(secondCard);
+    expect(firstCard).toHaveAttribute("aria-expanded", "false");
+    expect(secondCard).toHaveAttribute("aria-expanded", "true");
+    expect(screen.getAllByText(second.description.es)).toHaveLength(1);
+    expect(screen.queryByText(first.description.es)).toBeNull();
+
+    await user.click(secondCard);
+    expect(secondCard).toHaveAttribute("aria-expanded", "false");
+    expect(screen.queryByText(second.description.es)).toBeNull();
   });
 
-  it("shows a preview only for projects that have one", () => {
+  it("opens with the keyboard", async () => {
+    const user = userEvent.setup();
     render(<App />);
-    const images = screen.queryAllByRole("img");
-    expect(images).toHaveLength(projects.filter((project) => project.preview !== undefined).length);
+    const [first] = projects;
+    if (first === undefined) throw new Error("needs a project");
+    screen.getByRole("button", { name: first.name }).focus();
+
+    await user.keyboard("{Enter}");
+
+    expect(screen.getByText(first.description.es)).toBeInTheDocument();
   });
 
-  it("keeps a placeholder for every missing preview and website", () => {
+  it("gives every unfolded project its links, preview and placeholders", async () => {
+    const user = userEvent.setup();
     render(<App />);
-    const withoutPreview = projects.filter((project) => project.preview === undefined).length;
-    const withoutSite = projects.filter((project) => project.site === undefined).length;
-    expect(screen.queryAllByText("Vista previa próximamente")).toHaveLength(withoutPreview);
-    const sitePlaceholders = screen.queryAllByText("Web próximamente");
-    expect(sitePlaceholders).toHaveLength(withoutSite);
-    for (const placeholder of sitePlaceholders) {
-      expect(placeholder.closest("a")).toBeNull();
+    for (const project of projects) {
+      await user.click(screen.getByRole("button", { name: project.name }));
+      const detail = screen.getByRole("article", { name: project.name });
+      const hrefs = [
+        ...(project.code ?? []).map((link) => link.href),
+        ...(project.site === undefined ? [] : [project.site]),
+      ];
+      for (const href of hrefs) {
+        const link = detail.querySelector(`a[href="${href}"]`);
+        expect(link, href).not.toBeNull();
+        expect(link).toHaveAttribute("target", "_blank");
+        expect(link).toHaveAttribute("rel", "noopener noreferrer");
+      }
+      const text = detail.textContent;
+      expect(text.includes("Repositorio privado"), project.id).toBe(
+        (project.code ?? []).length === 0,
+      );
+      expect(text.includes("Vista previa próximamente"), project.id).toBe(
+        project.preview === undefined,
+      );
+      expect(text.includes("Web próximamente"), project.id).toBe(project.site === undefined);
+      expect(detail.querySelectorAll("img"), project.id).toHaveLength(
+        project.preview === undefined ? 0 : 1,
+      );
+      const placeholder = within(detail).queryByText("Web próximamente");
+      expect(placeholder?.closest("a") ?? null).toBeNull();
     }
   });
 });

@@ -1,14 +1,124 @@
-/* The featured project: the only large container on the page, banded in its own hue. */
-.featured {
+/*
+ * One row of project cards. On narrow screens the row scrolls sideways instead of wrapping,
+ * so it stays a row and the unfolded detail is always right below it.
+ */
+.cards {
+  list-style: none;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(12rem, 1fr);
+  gap: var(--space-4);
+  padding: 2px 2px var(--space-3);
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+}
+
+.cards > li {
+  display: flex;
+  scroll-snap-align: start;
+}
+
+/* A folded project. The button's ::after stretches its hit area over the whole card. */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-5) var(--space-4) var(--space-4);
   border: 1px solid var(--color-line);
+  border-top: 4px solid var(--hue);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease;
+}
+
+.card:hover {
+  border-color: var(--hue);
+}
+
+.card[data-open="true"] {
+  border-color: var(--hue);
+  background: var(--hue-soft);
+}
+
+.card h3 {
+  font-size: var(--text-lg);
+  font-weight: 700;
+}
+
+.cardButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--hue);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.cardButton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+/* The focus ring goes around the whole card, which is what the button stands for. */
+.cardButton:focus-visible {
+  outline: none;
+}
+
+.card:has(.cardButton:focus-visible) {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.chevron {
+  flex: none;
+  transition: transform 150ms ease;
+}
+
+.card[data-open="true"] .chevron {
+  transform: rotate(180deg);
+}
+
+.cardTagline {
+  flex: 1;
+  color: var(--color-ink-soft);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+/* The unfolded project: the only large container on the page, banded in its own hue. */
+.detail {
+  margin-top: var(--space-4);
+  border: 1px solid var(--color-line);
+  border-top: 4px solid var(--hue);
   border-radius: var(--radius-lg);
   background: var(--color-surface);
   box-shadow: var(--shadow-raised);
   overflow: hidden;
+  animation: unfold 200ms ease-out;
 }
 
-/* Title on the left, screenshot on the right when there is one. */
-.featuredHead {
+/* It answers the click: the detail slides in from the row it came from. */
+@keyframes unfold {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+/* Title on the left, screenshot on the right. */
+.detailHead {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
@@ -18,18 +128,21 @@
   border-bottom: 1px solid var(--color-line);
 }
 
-.featuredTitle {
+.detailTitle {
   display: grid;
   gap: var(--space-2);
 }
 
-.featuredHead .preview {
+.detailHead .preview {
   width: min(26rem, 40vw);
 }
 
-.featuredHead h3 {
+.detailName {
+  font-family: var(--font-display);
   font-size: var(--text-3xl);
   font-weight: 800;
+  line-height: var(--leading-tight);
+  letter-spacing: -0.015em;
   color: var(--hue);
 }
 
@@ -72,59 +185,14 @@
   font-variant-numeric: tabular-nums;
 }
 
-.featuredBody {
+.detailBody {
   display: grid;
   grid-template-columns: minmax(0, 3fr) minmax(0, 2fr) minmax(0, 2fr);
   gap: var(--space-5) var(--space-6);
   padding: var(--space-6);
 }
 
-.featuredBody > p {
-  color: var(--color-ink-soft);
-}
-
-/* The other projects: rows on the page, not more cards. A hue rule marks each one. */
-.list {
-  list-style: none;
-  margin-top: var(--space-7);
-}
-
-.list > li + li {
-  border-top: 1px solid var(--color-line);
-}
-
-.row {
-  display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
-  gap: var(--space-5) var(--space-7);
-  padding: var(--space-6) 0;
-}
-
-.rowHead {
-  display: grid;
-  align-content: start;
-  gap: var(--space-2);
-  padding-left: var(--space-4);
-  border-left: 4px solid var(--hue);
-}
-
-.rowHead h3 {
-  font-size: var(--text-xl);
-  font-weight: 750;
-}
-
-.rowHead .tagline {
-  font-size: var(--text-base);
-}
-
-.rowBody {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: var(--space-4) var(--space-6);
-}
-
-.rowBody > p {
-  grid-column: 1 / -1;
+.detailBody > p {
   color: var(--color-ink-soft);
 }
 
@@ -172,10 +240,6 @@
   border: 1px solid var(--color-line);
   border-radius: var(--radius-md);
   background: var(--hue-soft);
-}
-
-.rowHead .preview {
-  margin-top: var(--space-3);
 }
 
 /* No screenshot yet: the frame keeps its place, dashed in the project's hue. */
@@ -256,13 +320,9 @@
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  color: var(--color-muted);
+  color: var(--hue);
   font-size: var(--text-sm);
   font-weight: 600;
-}
-
-.featuredHead .status {
-  color: var(--hue);
 }
 
 .meter {
@@ -294,43 +354,30 @@
     border-top: 1px solid var(--color-line);
   }
 
-  .featuredBody {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  }
-
-  .featuredHead {
+  .detailHead {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .featuredHead .preview {
+  .detailHead .preview {
     width: 100%;
   }
 
-  .featuredBody > p {
-    grid-column: 1 / -1;
+  .detailBody {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 
-  .row {
-    grid-template-columns: minmax(0, 1fr);
+  .detailBody > p {
+    grid-column: 1 / -1;
   }
 }
 
 @media (max-width: 600px) {
-  .featuredHead,
-  .featuredBody {
+  .detailHead,
+  .detailBody {
     padding: var(--space-5) var(--space-4);
   }
 
-  .featuredTitle {
-    display: grid;
-    gap: var(--space-2);
-  }
-
-  .featuredHead .preview {
-    width: min(26rem, 40vw);
-  }
-
-  .featuredHead h3 {
+  .detailName {
     font-size: var(--text-2xl);
   }
 
@@ -338,8 +385,7 @@
     padding: var(--space-4);
   }
 
-  .featuredBody,
-  .rowBody {
+  .detailBody {
     grid-template-columns: minmax(0, 1fr);
   }
 }
