@@ -29,7 +29,7 @@ export const es = {
     lead: "El TFM del máster y lo que estoy construyendo ahora, cada uno para aprender algo concreto.",
     highlightsHeading: "Lo interesante",
     stackLabel: "Tecnologías",
-    repo: "Ver el código",
+    site: "Ver la web",
     privateRepo: "Repositorio privado",
     phases: (done: number, total: number): string => `${done} de ${total} fases terminadas`,
   },

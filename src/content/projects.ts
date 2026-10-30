@@ -1,13 +1,21 @@
-import type { Project } from "./types";
+import type { ExternalLink, Project } from "./types";
 
 /**
  * Sources, all read from the repositories:
  * - LumosNet: ../../master/tfm (README, frontend/src/docs/chapters 03 and 08).
+ * - InContext: ../datos/back (README, docs/project-brief.md, ADR-0016, ADR-0020) and
+ *   ../datos/front (README, src/i18n/es.ts for the name). 8 phases, still in development.
  * - Energy Analyzer: ../aws/README.md (roadmap, 2 of 7 steps ticked).
  * - EV charging IoT: ../traffic/docs/project-brief.md (phase plan: 8 phases, 1–2 done).
  * - Stock app: ../stock-app/README.md and specs/.
- * The first project is the featured one.
+ * The first project is the featured one. Previews go in public/projects/<id>.webp.
  */
+
+const CODE_LABEL = { es: "Código", en: "Code" } as const;
+
+function repo(name: string): ExternalLink {
+  return { label: CODE_LABEL, href: `https://github.com/JuanAntonioLeonOjeda/${name}` };
+}
 export const projects: readonly Project[] = [
   {
     id: "lumosnet",
@@ -64,7 +72,60 @@ export const projects: readonly Project[] = [
         label: { es: "sensibilidad a osteoporosis", en: "sensitivity to osteoporosis" },
       },
     ],
-    repo: "https://github.com/JuanAntonioLeonOjeda/TFM",
+    code: [repo("TFM")],
+  },
+  {
+    id: "incontext",
+    name: "InContext",
+    hue: "context",
+    tagline: {
+      es: "Las noticias políticas de cada comunidad autónoma, con su contexto",
+      en: "Political news from each Spanish region, in context",
+    },
+    description: {
+      es: "Un mapa de España: eliges una comunidad autónoma y un sector (educación, sanidad o vivienda) y ves quién gobierna, datos oficiales del INE y las últimas noticias de medios nacionales y regionales, agrupadas por historia.",
+      en: "A map of Spain: pick a region and a sector (education, health or housing) and see who governs, official statistics from the INE and the latest news from national and regional outlets, grouped by story.",
+    },
+    highlights: [
+      {
+        es: "Clasificación por sector y nivel de gobierno con un modelo propio (SetFit) entrenado con etiquetas hechas a mano, sin LLM",
+        en: "Classification by sector and level of government with an own model (SetFit) trained on hand labels, no LLM",
+      },
+      {
+        es: "La misma noticia de distintos medios se agrupa por similitud de embeddings, calculada en PostgreSQL con pgvector",
+        en: "The same story from different outlets is grouped by embedding similarity, computed in PostgreSQL with pgvector",
+      },
+      {
+        es: "Neutral por construcción: el mismo código para todos los partidos y medios, y cada dato con su fuente",
+        en: "Neutral by construction: the same code path for every party and outlet, and a source for every number",
+      },
+    ],
+    stack: [
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "pgvector",
+      "SQLAlchemy",
+      "SetFit",
+      "React",
+      "TanStack Query",
+      "D3",
+      "Docker",
+    ],
+    status: {
+      kind: "ongoing",
+      note: { es: "En desarrollo", en: "In development" },
+    },
+    code: [
+      {
+        label: { es: "Código del back-end", en: "Back-end code" },
+        href: repo("context-back").href,
+      },
+      {
+        label: { es: "Código del front-end", en: "Front-end code" },
+        href: repo("context-front").href,
+      },
+    ],
   },
   {
     id: "energy-analyzer",
@@ -139,6 +200,6 @@ export const projects: readonly Project[] = [
       kind: "ongoing",
       note: { es: "En desarrollo", en: "In development" },
     },
-    repo: "https://github.com/JuanAntonioLeonOjeda/app-stock",
+    code: [repo("app-stock")],
   },
 ];

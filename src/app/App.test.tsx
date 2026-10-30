@@ -59,13 +59,29 @@ describe("App", () => {
     expect(screen.getByRole("button", { name: "Cambiar a tema claro" })).toBeInTheDocument();
   });
 
-  it("links private projects nowhere and public ones to GitHub", () => {
+  it("links every public repository and website, in a new tab", () => {
     render(<App />);
-    const codeLinks = screen.getAllByRole("link", { name: /Ver el código/ });
-    expect(codeLinks).toHaveLength(projects.filter((project) => project.repo !== undefined).length);
-    for (const link of codeLinks) {
+    const hrefs = projects.flatMap((project) => [
+      ...(project.code ?? []).map((link) => link.href),
+      ...(project.site === undefined ? [] : [project.site]),
+    ]);
+    for (const href of hrefs) {
+      const link = document.querySelector(`a[href="${href}"]`);
+      expect(link, href).not.toBeNull();
       expect(link).toHaveAttribute("target", "_blank");
       expect(link).toHaveAttribute("rel", "noopener noreferrer");
     }
+  });
+
+  it("says when a project's code is private", () => {
+    render(<App />);
+    const privateCount = projects.filter((project) => (project.code ?? []).length === 0).length;
+    expect(screen.getAllByText("Repositorio privado")).toHaveLength(privateCount);
+  });
+
+  it("shows a preview only for projects that have one", () => {
+    render(<App />);
+    const images = screen.queryAllByRole("img");
+    expect(images).toHaveLength(projects.filter((project) => project.preview !== undefined).length);
   });
 });

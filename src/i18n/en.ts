@@ -28,7 +28,7 @@ export const en: Messages = {
     lead: "My master's thesis and what I am building now, each one to learn something specific.",
     highlightsHeading: "What is interesting",
     stackLabel: "Technologies",
-    repo: "See the code",
+    site: "Visit the site",
     privateRepo: "Private repository",
     phases: (done: number, total: number): string => `${done} of ${total} phases done`,
   },

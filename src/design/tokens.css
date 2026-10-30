@@ -40,6 +40,9 @@
   /* The TFM: the graphite blue of a radiograph */
   --project-tfm: #3b5174;
   --project-tfm-soft: #e3e9f3;
+  /* InContext: the red of a newspaper masthead */
+  --project-context: #b3261e;
+  --project-context-soft: #fbe5e2;
   --project-energy: #b35c00;
   --project-energy-soft: #fbecdc;
   --project-ev: #0f7a5a;
@@ -116,6 +119,8 @@
 
   --project-tfm: #a9bcdc;
   --project-tfm-soft: #1b2539;
+  --project-context: #ff9a8f;
+  --project-context-soft: #3a1916;
   --project-energy: #ffb46b;
   --project-energy-soft: #36230f;
   --project-ev: #5fd7aa;

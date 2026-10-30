@@ -7,12 +7,24 @@
   overflow: hidden;
 }
 
+/* Title on the left, screenshot on the right when there is one. */
 .featuredHead {
   display: grid;
-  gap: var(--space-2);
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-5) var(--space-6);
   padding: var(--space-6) var(--space-6) var(--space-5);
   background: var(--hue-soft);
   border-bottom: 1px solid var(--color-line);
+}
+
+.featuredTitle {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.featuredHead .preview {
+  width: min(26rem, 40vw);
 }
 
 .featuredHead h3 {
@@ -150,18 +162,67 @@
   font-size: var(--text-sm);
 }
 
-.repo {
-  grid-column: 1 / -1;
-  font-weight: 600;
-  font-size: var(--text-sm);
-  color: var(--color-muted);
+/* A 16:10 frame reserved before the image loads, in the project's tint. */
+.preview {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--hue-soft);
 }
 
-.repo a {
+.rowHead .preview {
+  margin-top: var(--space-3);
+}
+
+/* Dev server only: where the screenshot goes. */
+.preview[data-placeholder] {
+  display: grid;
+  place-items: center;
+  border-style: dashed;
+  border-color: var(--hue);
+  color: var(--hue);
+  font-size: var(--text-xs);
+  font-weight: 600;
+}
+
+.links {
+  grid-column: 1 / -1;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-5);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.links a {
   display: inline-flex;
   align-items: center;
   gap: var(--space-1);
+  min-height: 2.75rem;
   color: var(--color-link);
+}
+
+/* The live site is the main way in: a filled button in the project's hue. */
+.links .siteLink {
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-sm);
+  background: var(--hue);
+  color: var(--color-surface);
+  text-decoration: none;
+}
+
+.links .siteLink:hover {
+  text-decoration: underline;
+}
+
+.private {
+  color: var(--color-muted);
 }
 
 .status {
@@ -210,6 +271,14 @@
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 
+  .featuredHead {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .featuredHead .preview {
+    width: 100%;
+  }
+
   .featuredBody > p {
     grid-column: 1 / -1;
   }
@@ -223,6 +292,15 @@
   .featuredHead,
   .featuredBody {
     padding: var(--space-5) var(--space-4);
+  }
+
+  .featuredTitle {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .featuredHead .preview {
+    width: min(26rem, 40vw);
   }
 
   .featuredHead h3 {

@@ -39,9 +39,12 @@ function FeaturedProject({ project }: { project: Project }): React.JSX.Element {
   return (
     <article className={styles.featured} style={hueStyle(project)} aria-labelledby={project.id}>
       <div className={styles.featuredHead}>
-        <StatusLabel status={project.status} />
-        <h3 id={project.id}>{project.name}</h3>
-        <p className={styles.tagline}>{pick(project.tagline, lang)}</p>
+        <div className={styles.featuredTitle}>
+          <StatusLabel status={project.status} />
+          <h3 id={project.id}>{project.name}</h3>
+          <p className={styles.tagline}>{pick(project.tagline, lang)}</p>
+        </div>
+        <ProjectPreview project={project} lang={lang} />
       </div>
       {project.stats !== undefined && (
         <dl className={styles.stats}>
@@ -70,6 +73,7 @@ function ProjectRow({ project }: { project: Project }): React.JSX.Element {
         <h3 id={project.id}>{project.name}</h3>
         <p className={styles.tagline}>{pick(project.tagline, lang)}</p>
         <StatusLabel status={project.status} />
+        <ProjectPreview project={project} lang={lang} />
       </div>
       <div className={styles.rowBody}>
         <p>{pick(project.description, lang)}</p>
@@ -100,14 +104,64 @@ function ProjectDetails({ project, lang }: { project: Project; lang: Lang }): Re
           ))}
         </ul>
       </div>
-      <p className={styles.repo}>
-        {project.repo !== undefined ? (
-          <ExternalLink href={project.repo}>{t.projects.repo}</ExternalLink>
-        ) : (
-          t.projects.privateRepo
-        )}
-      </p>
+      <ProjectLinks project={project} lang={lang} />
     </>
+  );
+}
+
+/**
+ * The screenshot, in a fixed 16:10 frame so the layout does not jump while it loads. Without
+ * one, production shows nothing; the dev server shows where the file goes.
+ */
+function ProjectPreview({
+  project,
+  lang,
+}: {
+  project: Project;
+  lang: Lang;
+}): React.JSX.Element | null {
+  if (project.preview === undefined) {
+    if (!import.meta.env.DEV) return null;
+    // Developer hint, never built into production: not translated on purpose.
+    return (
+      <div className={styles.preview} data-placeholder aria-hidden>
+        public/projects/{project.id}.webp
+      </div>
+    );
+  }
+
+  return (
+    <img
+      className={styles.preview}
+      src={`${import.meta.env.BASE_URL}${project.preview.file}`}
+      alt={pick(project.preview.alt, lang)}
+      loading="lazy"
+      decoding="async"
+    />
+  );
+}
+
+/** The live site first (the highlighter's quieter sibling), then the code. */
+function ProjectLinks({ project, lang }: { project: Project; lang: Lang }): React.JSX.Element {
+  const t = useMessages();
+  const code = project.code ?? [];
+
+  return (
+    <ul className={styles.links}>
+      {project.site !== undefined && (
+        <li>
+          <ExternalLink href={project.site} className={styles.siteLink}>
+            {t.projects.site}
+          </ExternalLink>
+        </li>
+      )}
+      {code.map((link) => (
+        <li key={link.href}>
+          <ExternalLink href={link.href}>{pick(link.label, lang)}</ExternalLink>
+        </li>
+      ))}
+      {code.length === 0 && <li className={styles.private}>{t.projects.privateRepo}</li>}
+    </ul>
   );
 }
 

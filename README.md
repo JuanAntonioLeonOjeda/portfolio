@@ -43,6 +43,22 @@ Para ver el build real tal y como lo sirve un servidor estático:
 docker compose up -d --build      # http://localhost:3200  (cambia el puerto con PORTFOLIO_PORT)
 ```
 
+## Imagen y web de un proyecto
+
+Cada proyecto puede llevar una captura y un enlace a su web (`src/content/projects.ts`):
+
+```ts
+preview: {
+  file: "projects/incontext.webp", // en public/projects/, con el id del proyecto
+  alt: { es: "El mapa de InContext con Canarias seleccionada", en: "InContext's map with the Canary Islands selected" },
+},
+site: "https://…",                  // solo https
+```
+
+La imagen se muestra en un marco 16:10 (mejor 1600×1000, en WebP). Sin imagen, la web
+publicada no enseña nada; `pnpm dev` muestra un hueco con la ruta donde va. Los tests
+comprueban que el fichero existe y que la web va por https.
+
 ## Publicar
 
 1. Crea el repositorio en GitHub y súbelo (`main` y `develop`).

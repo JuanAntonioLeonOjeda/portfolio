@@ -23,7 +23,7 @@ export interface Profile {
 }
 
 /** Keys of the `--project-*` tokens in src/design/tokens.css. */
-export type ProjectHue = "tfm" | "energy" | "ev" | "stocks";
+export type ProjectHue = "tfm" | "context" | "energy" | "ev" | "stocks";
 
 export interface ProjectStat {
   readonly value: Localized;
@@ -36,6 +36,15 @@ export type ProjectStatus =
   | { readonly kind: "phases"; readonly done: number; readonly total: number }
   | { readonly kind: "ongoing"; readonly note: Localized };
 
+/**
+ * A screenshot of the project. `file` is relative to `public/` (`projects/<id>.webp`) and is
+ * served under the site's base path; content.test.ts checks the file exists.
+ */
+export interface ProjectPreview {
+  readonly file: string;
+  readonly alt: Localized;
+}
+
 export interface Project {
   readonly id: string;
   readonly name: string;
@@ -46,8 +55,11 @@ export interface Project {
   readonly stack: readonly string[];
   readonly status: ProjectStatus;
   readonly stats?: readonly ProjectStat[];
+  readonly preview?: ProjectPreview;
+  /** The project's public website or live demo (https). */
+  readonly site?: string;
   /** Only public repositories: a private one is never linked. */
-  readonly repo?: string;
+  readonly code?: readonly ExternalLink[];
 }
 
 /** Keys of the `--career-*` tokens. */
