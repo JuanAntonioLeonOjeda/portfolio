@@ -16,6 +16,8 @@ stack y contacto, en español e inglés, con tema claro y oscuro.
 ![Vite](https://img.shields.io/badge/VITE-8.3.5-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 ![Lucide](https://img.shields.io/badge/LUCIDE%20REACT-1.61.0-F56565?style=for-the-badge&logo=lucide&logoColor=white)
 ![Fontsource](https://img.shields.io/badge/FONTSOURCE-5.3.0-1B1F24?style=for-the-badge&logo=googlefonts&logoColor=white)
+![Geist](https://img.shields.io/badge/GEIST-5.3.0-000000?style=for-the-badge&logo=vercel&logoColor=white)
+![Simple Icons](https://img.shields.io/badge/SIMPLE%20ICONS-16.36.0-111111?style=for-the-badge&logo=simpleicons&logoColor=white)
 ![Vitest](https://img.shields.io/badge/VITEST-5.0.5-6E9F18?style=for-the-badge&logo=vitest&logoColor=white)
 ![Testing Library](https://img.shields.io/badge/TESTING%20LIBRARY-16.3.3-E33332?style=for-the-badge&logo=testinglibrary&logoColor=white)
 ![ESLint](https://img.shields.io/badge/ESLINT-9.39.5-4B32C3?style=for-the-badge&logo=eslint&logoColor=white)
@@ -40,6 +42,23 @@ Para ver el build real tal y como lo sirve un servidor estático:
 ```bash
 docker compose up -d --build      # http://localhost:3200  (cambia el puerto con PORTFOLIO_PORT)
 ```
+
+## Imagen y web de un proyecto
+
+Cada proyecto puede llevar una captura y un enlace a su web (`src/content/projects.ts`):
+
+```ts
+preview: {
+  file: "projects/incontext.webp", // en public/projects/, con el id del proyecto
+  alt: { es: "El mapa de InContext con Canarias seleccionada", en: "InContext's map with the Canary Islands selected" },
+},
+site: "https://…",                  // solo https
+```
+
+La imagen se muestra en un marco 16:10 (mejor 1600×1000, en WebP). Mientras falten, cada
+proyecto enseña un hueco "Vista previa próximamente" y un botón inactivo "Web próximamente"
+(también en la web publicada); `pnpm dev` añade al hueco la ruta donde va la imagen. Los tests
+comprueban que el fichero existe y que la web va por https.
 
 ## Publicar
 

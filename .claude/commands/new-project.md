@@ -14,7 +14,9 @@ Follow `.claude/rules/content-authoring.md`.
 2. Check whether the repository is public:
    `gh repo view <owner>/<repo> --json visibility` (no remote or private → no link).
 3. Propose to the author, in Spanish and briefly: tagline, description, 1–3 highlights,
-   stack, status (phases counted from the roadmap) and the hue (an existing
+   stack, status (phases counted from the roadmap), the public website if there is one
+   (`site`, https), a screenshot (`public/projects/<id>.webp`, 16:10, ideally 1600×1000,
+   with an `alt` in both languages) and the hue (an existing
    `--project-*` token or a new pair, light and dark, checked for contrast). **Wait for
    confirmation** if the project is new; go ahead if it is an update the author asked for.
 4. Add or edit the entry in `src/content/projects.ts`, naming the source in the header

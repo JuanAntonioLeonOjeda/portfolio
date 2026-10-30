@@ -13,7 +13,6 @@
 .header h2 {
   font-size: var(--text-3xl);
   font-weight: 750;
-  font-stretch: 85%;
 }
 
 .header p {

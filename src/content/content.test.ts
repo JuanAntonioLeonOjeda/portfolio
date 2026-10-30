@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 
 import { describe, expect, it } from "vitest";
 
@@ -45,9 +45,27 @@ describe("content", () => {
 
   it("links only GitHub repositories of the author", () => {
     for (const project of projects) {
-      if (project.repo !== undefined) {
-        expect(project.repo.startsWith(`${profile.github}/`), project.id).toBe(true);
+      for (const link of project.code ?? []) {
+        expect(link.href.startsWith(`${profile.github}/`), project.id).toBe(true);
       }
+    }
+  });
+
+  it("links project websites over https only", () => {
+    for (const project of projects) {
+      if (project.site !== undefined) {
+        expect(new URL(project.site).protocol, project.id).toBe("https:");
+      }
+    }
+  });
+
+  it("has every declared preview in public/, named after its project", () => {
+    for (const project of projects) {
+      if (project.preview === undefined) continue;
+      expect(project.preview.file, project.id).toMatch(
+        new RegExp(`^projects/${project.id}\\.(webp|avif|png|jpg)$`),
+      );
+      expect(existsSync(`public/${project.preview.file}`), project.preview.file).toBe(true);
     }
   });
 
