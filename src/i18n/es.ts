@@ -30,6 +30,8 @@ export const es = {
     highlightsHeading: "Lo interesante",
     stackLabel: "Tecnologías",
     site: "Ver la web",
+    siteSoon: "Web próximamente",
+    previewSoon: "Vista previa próximamente",
     privateRepo: "Repositorio privado",
     phases: (done: number, total: number): string => `${done} de ${total} fases terminadas`,
   },

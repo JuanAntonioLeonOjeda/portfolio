@@ -1,3 +1,4 @@
+import { Globe, Image as ImageIcon } from "lucide-react";
 import type { CSSProperties } from "react";
 
 import { projects } from "@/content/projects";
@@ -110,22 +111,19 @@ function ProjectDetails({ project, lang }: { project: Project; lang: Lang }): Re
 }
 
 /**
- * The screenshot, in a fixed 16:10 frame so the layout does not jump while it loads. Without
- * one, production shows nothing; the dev server shows where the file goes.
+ * The screenshot, in a fixed 16:10 frame so the layout does not jump while it loads. Until a
+ * project has one, the same frame says it is coming (and, on the dev server, where it goes).
  */
-function ProjectPreview({
-  project,
-  lang,
-}: {
-  project: Project;
-  lang: Lang;
-}): React.JSX.Element | null {
+function ProjectPreview({ project, lang }: { project: Project; lang: Lang }): React.JSX.Element {
+  const t = useMessages();
+
   if (project.preview === undefined) {
-    if (!import.meta.env.DEV) return null;
-    // Developer hint, never built into production: not translated on purpose.
     return (
-      <div className={styles.preview} data-placeholder aria-hidden>
-        public/projects/{project.id}.webp
+      <div className={styles.preview} data-placeholder>
+        <ImageIcon aria-hidden size={28} />
+        <p>{t.projects.previewSoon}</p>
+        {/* Developer hint, never built into production: not translated on purpose. */}
+        {import.meta.env.DEV && <code>public/projects/{project.id}.webp</code>}
       </div>
     );
   }
@@ -148,13 +146,19 @@ function ProjectLinks({ project, lang }: { project: Project; lang: Lang }): Reac
 
   return (
     <ul className={styles.links}>
-      {project.site !== undefined && (
-        <li>
+      <li>
+        {project.site !== undefined ? (
           <ExternalLink href={project.site} className={styles.siteLink}>
             {t.projects.site}
           </ExternalLink>
-        </li>
-      )}
+        ) : (
+          // Same place and shape as the button, but not a link: there is nowhere to go yet.
+          <span className={styles.siteLink} data-placeholder>
+            <Globe aria-hidden size="1em" />
+            {t.projects.siteSoon}
+          </span>
+        )}
+      </li>
       {code.map((link) => (
         <li key={link.href}>
           <ExternalLink href={link.href}>{pick(link.label, lang)}</ExternalLink>

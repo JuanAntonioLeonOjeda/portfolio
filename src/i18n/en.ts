@@ -29,6 +29,8 @@ export const en: Messages = {
     highlightsHeading: "What is interesting",
     stackLabel: "Technologies",
     site: "Visit the site",
+    siteSoon: "Website coming soon",
+    previewSoon: "Preview coming soon",
     privateRepo: "Private repository",
     phases: (done: number, total: number): string => `${done} of ${total} phases done`,
   },

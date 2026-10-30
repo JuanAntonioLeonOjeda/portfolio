@@ -178,15 +178,26 @@
   margin-top: var(--space-3);
 }
 
-/* Dev server only: where the screenshot goes. */
+/* No screenshot yet: the frame keeps its place, dashed in the project's hue. */
 .preview[data-placeholder] {
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-4);
   border-style: dashed;
   border-color: var(--hue);
   color: var(--hue);
-  font-size: var(--text-xs);
+  font-size: var(--text-sm);
   font-weight: 600;
+  text-align: center;
+}
+
+.preview[data-placeholder] code {
+  font-size: var(--text-xs);
+  font-weight: 400;
+  color: var(--color-muted);
 }
 
 .links {
@@ -219,6 +230,22 @@
 
 .links .siteLink:hover {
   text-decoration: underline;
+}
+
+/* No site yet: the button's outline, not its fill, and no pointer. */
+.links .siteLink[data-placeholder] {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 2.75rem;
+  border: 1px dashed var(--hue);
+  background: none;
+  color: var(--hue);
+  cursor: default;
+}
+
+.links .siteLink[data-placeholder]:hover {
+  text-decoration: none;
 }
 
 .private {

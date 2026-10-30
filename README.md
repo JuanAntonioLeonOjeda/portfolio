@@ -55,8 +55,9 @@ preview: {
 site: "https://…",                  // solo https
 ```
 
-La imagen se muestra en un marco 16:10 (mejor 1600×1000, en WebP). Sin imagen, la web
-publicada no enseña nada; `pnpm dev` muestra un hueco con la ruta donde va. Los tests
+La imagen se muestra en un marco 16:10 (mejor 1600×1000, en WebP). Mientras falten, cada
+proyecto enseña un hueco "Vista previa próximamente" y un botón inactivo "Web próximamente"
+(también en la web publicada); `pnpm dev` añade al hueco la ruta donde va la imagen. Los tests
 comprueban que el fichero existe y que la web va por https.
 
 ## Publicar

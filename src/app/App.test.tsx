@@ -84,4 +84,16 @@ describe("App", () => {
     const images = screen.queryAllByRole("img");
     expect(images).toHaveLength(projects.filter((project) => project.preview !== undefined).length);
   });
+
+  it("keeps a placeholder for every missing preview and website", () => {
+    render(<App />);
+    const withoutPreview = projects.filter((project) => project.preview === undefined).length;
+    const withoutSite = projects.filter((project) => project.site === undefined).length;
+    expect(screen.queryAllByText("Vista previa próximamente")).toHaveLength(withoutPreview);
+    const sitePlaceholders = screen.queryAllByText("Web próximamente");
+    expect(sitePlaceholders).toHaveLength(withoutSite);
+    for (const placeholder of sitePlaceholders) {
+      expect(placeholder.closest("a")).toBeNull();
+    }
+  });
 });
