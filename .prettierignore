@@ -1,0 +1,5 @@
+dist
+coverage
+pnpm-lock.yaml
+.claude/skills/ui-ux-pro-max
+.agents

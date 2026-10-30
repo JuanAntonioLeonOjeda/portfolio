@@ -1,0 +1,175 @@
+/*
+ * The career as a Gantt chart on a real year axis: overlaps (teaching while building, the
+ * master's while at PowerBIM) are visible at a glance. Labels on the left, bars on the right.
+ * On a phone the bars go away and the labels become a plain list.
+ */
+
+.legend {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  margin-bottom: var(--space-5);
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+[data-kind="work"] {
+  --kind: var(--career-work);
+}
+
+[data-kind="teaching"] {
+  --kind: var(--career-teaching);
+}
+
+[data-kind="study"] {
+  --kind: var(--career-study);
+}
+
+/* Work is solid; study is hollow. Shape, not only colour, tells them apart. */
+.swatch {
+  width: 1.5rem;
+  height: 0.75rem;
+  border-radius: 3px;
+  border: 2px solid var(--kind);
+  background: var(--kind);
+}
+
+[data-kind="study"] .swatch,
+.row[data-kind="study"] .bar {
+  background: color-mix(in oklab, var(--kind) 18%, transparent);
+}
+
+.chart {
+  --label-width: minmax(15rem, 20rem);
+}
+
+.axis,
+.row {
+  display: grid;
+  grid-template-columns: var(--label-width) minmax(0, 1fr);
+  column-gap: var(--space-5);
+}
+
+.ticks {
+  position: relative;
+  height: 1.75rem;
+  color: var(--color-muted);
+  font-size: var(--text-xs);
+  font-variant-numeric: tabular-nums;
+}
+
+.ticks span {
+  position: absolute;
+  bottom: var(--space-1);
+  transform: translateX(-50%);
+}
+
+.ticks .nowLabel {
+  left: var(--now);
+  bottom: auto;
+  top: -1rem;
+  color: var(--color-ink);
+  font-weight: 700;
+}
+
+.rows {
+  list-style: none;
+  border-top: 1px solid var(--color-line);
+}
+
+.row {
+  border-bottom: 1px solid var(--color-line);
+}
+
+.label {
+  padding: var(--space-4) 0;
+}
+
+.label h3 {
+  font-size: var(--text-base);
+  font-weight: 700;
+}
+
+.place {
+  color: var(--color-ink-soft);
+  font-size: var(--text-sm);
+}
+
+.years {
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.detail {
+  margin-top: var(--space-2);
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+/* One gridline per year, and the "now" line, drawn on every track so they read as one. */
+.track {
+  position: relative;
+  background-image: linear-gradient(to right, var(--color-line) 1px, transparent 1px);
+  background-size: calc(100% / var(--steps)) 100%;
+  border-right: 1px solid var(--color-line);
+}
+
+.track::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--now);
+  border-left: 2px dashed var(--color-ink);
+}
+
+.bar {
+  position: absolute;
+  top: var(--space-4);
+  height: 1.25rem;
+  border-radius: 4px;
+  border: 2px solid var(--kind);
+  background: var(--kind);
+}
+
+/* Started before the axis: the bar fades in from the left edge instead of a hard start. */
+.bar[data-clipped="true"] {
+  border-left: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  mask-image: linear-gradient(to right, transparent, #000 60%);
+}
+
+/* Still going on: the bar ends open at "now". */
+.bar[data-ongoing="true"] {
+  border-right-style: dashed;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+@media (max-width: 720px) {
+  .axis,
+  .track {
+    display: none;
+  }
+
+  .row {
+    grid-template-columns: minmax(0, 1fr);
+    padding-left: var(--space-4);
+    border-left: 4px solid var(--kind);
+    margin-bottom: var(--space-2);
+  }
+
+  .row[data-kind="study"] {
+    border-left-style: double;
+  }
+}

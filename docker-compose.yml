@@ -1,0 +1,9 @@
+# One service: the static site, as GitHub Pages serves it. Open http://localhost:${PORTFOLIO_PORT:-3200}
+name: portfolio
+
+services:
+  web:
+    build: .
+    ports:
+      - "${PORTFOLIO_PORT:-3200}:8080"
+    restart: unless-stopped

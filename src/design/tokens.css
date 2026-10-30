@@ -1,0 +1,131 @@
+/*
+ * Design tokens. Components never use raw colours or sizes: only these names.
+ *
+ * Colour has meaning here (same grammar as Repaso):
+ * - each project owns one hue (`--project-*`), used for its marker, its band and its links;
+ * - each kind of career entry owns one hue (`--career-*`) in the timeline;
+ * - the highlighter yellow (`--color-task*`) marks only what the visitor can do next
+ *   (get in touch), never decoration.
+ */
+
+:root {
+  color-scheme: light;
+
+  /* Paper and ink */
+  --color-bg: #f4f6f9;
+  --color-surface: #ffffff;
+  --color-surface-sunken: #eceff4;
+  --color-ink: #162033;
+  --color-ink-soft: #3b4659;
+  --color-muted: #5b667a;
+  --color-line: #d9dee7;
+  --color-line-strong: #b9c1ce;
+
+  /* Interaction */
+  --color-focus: #2f6fed;
+  --color-link: #2754c5;
+
+  /* The highlighter: "your turn" */
+  --color-task: #ffe25c;
+  --color-task-soft: #fff6c7;
+  --color-task-ink: #4a3b00;
+
+  /* Status */
+  --color-ok: #127a4a;
+  --color-ok-soft: #ddf3e7;
+  --color-warn: #8a5a00;
+  --color-warn-soft: #fdf0d5;
+
+  /* Projects (text-safe on surface) and their tints */
+  /* The TFM: the graphite blue of a radiograph */
+  --project-tfm: #3b5174;
+  --project-tfm-soft: #e3e9f3;
+  --project-energy: #b35c00;
+  --project-energy-soft: #fbecdc;
+  --project-ev: #0f7a5a;
+  --project-ev-soft: #dcf2ea;
+  --project-stocks: #7a3fd0;
+  --project-stocks-soft: #efe6fb;
+
+  /* Career timeline: one hue per kind of entry */
+  --career-work: #2f55c9;
+  --career-teaching: #c42a63;
+  --career-study: #0b7489;
+
+  /* Type */
+  --font-display: "Bricolage Grotesque Variable", "Figtree Variable", system-ui, sans-serif;
+  --font-body: "Figtree Variable", system-ui, sans-serif;
+
+  --text-xs: 0.78rem;
+  --text-sm: 0.88rem;
+  --text-base: 1.0625rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.6rem;
+  --text-2xl: 2.15rem;
+  --text-3xl: 3rem;
+  --text-hero: clamp(3.4rem, 13vw, 9.5rem);
+
+  --leading-tight: 1.15;
+  --leading-body: 1.65;
+
+  /* Space (4px base) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --space-9: 7rem;
+
+  /* Shape: small radius for controls, larger for the few containers that carry content */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 18px;
+  --shadow-raised: 0 1px 2px rgb(22 32 51 / 6%), 0 8px 24px rgb(22 32 51 / 6%);
+
+  --measure: 64ch;
+  --page-width: 1120px;
+  --header-height: 60px;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-bg: #0e1320;
+  --color-surface: #151c2b;
+  --color-surface-sunken: #10172a;
+  --color-ink: #e8edf6;
+  --color-ink-soft: #c5cddb;
+  --color-muted: #9aa6ba;
+  --color-line: #273149;
+  --color-line-strong: #3a4766;
+
+  --color-focus: #7aa5ff;
+  --color-link: #8fb2ff;
+
+  --color-task: #e9c93a;
+  --color-task-soft: #322c12;
+  --color-task-ink: #1f1800;
+
+  --color-ok: #4fd18b;
+  --color-ok-soft: #12301f;
+  --color-warn: #f5bd4f;
+  --color-warn-soft: #342812;
+
+  --project-tfm: #a9bcdc;
+  --project-tfm-soft: #1b2539;
+  --project-energy: #ffb46b;
+  --project-energy-soft: #36230f;
+  --project-ev: #5fd7aa;
+  --project-ev-soft: #0f2e25;
+  --project-stocks: #c3a0ff;
+  --project-stocks-soft: #271c44;
+
+  --career-work: #8ea9ff;
+  --career-teaching: #ff8db5;
+  --career-study: #6bd3e8;
+
+  --shadow-raised: 0 1px 2px rgb(0 0 0 / 30%), 0 8px 24px rgb(0 0 0 / 25%);
+}

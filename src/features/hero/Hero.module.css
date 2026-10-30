@@ -1,0 +1,77 @@
+.hero {
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-4) var(--space-7);
+}
+
+/*
+ * The one loud element of the page: the name, set narrow and heavy so it fills the width
+ * (Bricolage's width axis, 75–100%). Each half of the name stays on its own line.
+ */
+.name {
+  font-size: var(--text-hero);
+  font-weight: 800;
+  font-stretch: 75%;
+  line-height: 0.88;
+  letter-spacing: -0.035em;
+}
+
+.name span {
+  display: block;
+}
+
+.name span + span {
+  color: var(--color-ink-soft);
+}
+
+.body {
+  display: grid;
+  gap: var(--space-4);
+  max-width: var(--measure);
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 2px solid var(--color-ink);
+}
+
+.role {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 650;
+}
+
+.summary {
+  color: var(--color-ink-soft);
+  font-size: var(--text-lg);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-5);
+  margin-top: var(--space-2);
+}
+
+/* The highlighter: the visitor's next step. */
+.cta {
+  display: inline-block;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-sm);
+  background: var(--color-task);
+  color: var(--color-task-ink);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.cta:hover {
+  text-decoration: underline;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 2.75rem;
+  color: var(--color-ink);
+  font-weight: 600;
+}
