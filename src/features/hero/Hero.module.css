@@ -5,19 +5,15 @@
 }
 
 /*
- * The one loud element of the page: the name, set narrow and heavy so it fills the width
- * (Bricolage's width axis, 75–100%). Each half of the name stays on its own line.
+ * The one loud element of the page: the name, on a single line. `--text-hero` scales with the
+ * viewport so the full name fits from a 360px phone to the page width without wrapping.
  */
 .name {
   font-size: var(--text-hero);
-  font-weight: 800;
-  font-stretch: 75%;
-  line-height: 0.88;
-  letter-spacing: -0.035em;
-}
-
-.name span {
-  display: block;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
 }
 
 .name span + span {

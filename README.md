@@ -16,6 +16,8 @@ stack y contacto, en español e inglés, con tema claro y oscuro.
 ![Vite](https://img.shields.io/badge/VITE-8.3.5-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 ![Lucide](https://img.shields.io/badge/LUCIDE%20REACT-1.61.0-F56565?style=for-the-badge&logo=lucide&logoColor=white)
 ![Fontsource](https://img.shields.io/badge/FONTSOURCE-5.3.0-1B1F24?style=for-the-badge&logo=googlefonts&logoColor=white)
+![Geist](https://img.shields.io/badge/GEIST-5.3.0-000000?style=for-the-badge&logo=vercel&logoColor=white)
+![Simple Icons](https://img.shields.io/badge/SIMPLE%20ICONS-16.36.0-111111?style=for-the-badge&logo=simpleicons&logoColor=white)
 ![Vitest](https://img.shields.io/badge/VITEST-5.0.5-6E9F18?style=for-the-badge&logo=vitest&logoColor=white)
 ![Testing Library](https://img.shields.io/badge/TESTING%20LIBRARY-16.3.3-E33332?style=for-the-badge&logo=testinglibrary&logoColor=white)
 ![ESLint](https://img.shields.io/badge/ESLINT-9.39.5-4B32C3?style=for-the-badge&logo=eslint&logoColor=white)

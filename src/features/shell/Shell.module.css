@@ -22,11 +22,14 @@
 .brand {
   font-family: var(--font-display);
   font-weight: 750;
-  font-stretch: 80%;
   font-size: var(--text-lg);
   color: var(--color-ink);
   text-decoration: none;
   white-space: nowrap;
+  /* Never push the language and theme controls off screen: the name gives way first. */
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .nav {
@@ -114,13 +117,18 @@
   font-size: var(--text-sm);
 }
 
-/* Section links fit in the header from tablet up; on a phone the page is one scroll. */
-@media (max-width: 720px) {
+/* Section links fit next to the full name from 880px up; below, the page is one scroll. */
+@media (max-width: 880px) {
   .nav {
     display: none;
   }
 
   .tools {
+    flex: none;
     margin-left: auto;
+  }
+
+  .brand {
+    font-size: var(--text-base);
   }
 }

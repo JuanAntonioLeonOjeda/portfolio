@@ -18,7 +18,6 @@
 .featuredHead h3 {
   font-size: var(--text-3xl);
   font-weight: 800;
-  font-stretch: 80%;
   color: var(--hue);
 }
 
@@ -100,7 +99,6 @@
 .rowHead h3 {
   font-size: var(--text-xl);
   font-weight: 750;
-  font-stretch: 85%;
 }
 
 .rowHead .tagline {
