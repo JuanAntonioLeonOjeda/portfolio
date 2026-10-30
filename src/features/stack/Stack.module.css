@@ -27,9 +27,28 @@
 }
 
 .line li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
   font-family: var(--font-display);
   font-size: var(--text-lg);
   font-weight: 500;
+}
+
+/* Brand logos carry a colour per theme (logos.ts); generic icons take the muted ink. */
+.logo {
+  flex: none;
+  width: 1.1em;
+  height: 1.1em;
+  color: var(--color-muted);
+}
+
+.logo[data-brand] {
+  fill: var(--logo-light);
+}
+
+:root[data-theme="dark"] .logo[data-brand] {
+  fill: var(--logo-dark);
 }
 
 @media (max-width: 600px) {

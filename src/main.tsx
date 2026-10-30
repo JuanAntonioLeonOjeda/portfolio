@@ -1,5 +1,4 @@
-// `standard` carries both the weight and the width axes: the hero name uses font-stretch.
-import "@fontsource-variable/bricolage-grotesque/standard.css";
+import "@fontsource-variable/geist";
 import "@fontsource-variable/figtree";
 import "@/design/tokens.css";
 import "@/design/base.css";
