@@ -49,9 +49,12 @@ export interface Project {
   readonly id: string;
   readonly name: string;
   readonly hue: ProjectHue;
+  /** Its main trait in one or two words (AI, AWS, MQTT…), shown as a tag on the card. */
+  readonly tag: Localized;
   readonly tagline: Localized;
   readonly description: Localized;
   readonly highlights: readonly Localized[];
+  /** Most important first: the folded card shows only the first four. */
   readonly stack: readonly string[];
   readonly status: ProjectStatus;
   readonly stats?: readonly ProjectStat[];
@@ -73,11 +76,42 @@ export interface CareerEntry {
   readonly start: number;
   /** `null` while it is still going on. */
   readonly end: number | null;
-  readonly detail?: Localized;
+  /** Month the entry ended (1–12), when known: the timeline bar ends with it. */
+  readonly endMonth?: number;
+}
+
+/** Where a technology has been used: at a job, in personal projects (the master's included). */
+export type SkillContext = "work" | "personal";
+
+export interface Skill {
+  /** As in the logos map (src/features/stack/logos.ts). */
+  readonly name: string;
+  readonly contexts: readonly SkillContext[];
+  /**
+   * Last month it was used, "YYYY-MM"; `null` while it is in use. Left out when no source says
+   * (then it never counts as recent).
+   */
+  readonly lastUsed?: string | null;
 }
 
 export interface SkillGroup {
   readonly id: string;
   readonly title: Localized;
-  readonly items: readonly string[];
+  readonly items: readonly Skill[];
+}
+
+/** A project built at a job: what it is, what it does and what it is built with. */
+export interface WorkProject {
+  readonly id: string;
+  readonly name: Localized;
+  readonly description: Localized;
+  readonly features: readonly Localized[];
+  /** Technology names as in the stack section, so each one gets its logo. */
+  readonly stack: readonly string[];
+}
+
+/** The projects of one job; `id` is that job's entry in `experience` (it gives the years). */
+export interface WorkProjectGroup {
+  readonly id: string;
+  readonly projects: readonly WorkProject[];
 }

@@ -7,16 +7,17 @@ description: What this project is, its scope, commands, the Docker rebuild rule,
 ## What this is
 
 **Portfolio**: the public personal site of Juan Antonio León Ojeda, full-stack developer
-finishing a master's in AI. One page in Spanish and English: who he is, the featured projects,
-the career, the stack and how to get in touch.
+with a master's in AI (finished October 2026). One page in Spanish and English: who he is,
+the featured projects, his experience and education, the stack and how to get in touch.
 
 - A static single-page app published on **GitHub Pages** from `main` (ADR-0001). No backend,
   no accounts, **no cookies, no analytics**.
 - Two languages with no i18n library (ADR-0002): UI strings in `src/i18n/`, content with both
   languages side by side in `src/content/`.
-- Projects featured: the master's thesis (LumosNet, `../../master/tfm`) and the author's
-  personal projects in progress (`../aws`, `../traffic`, `../stock-app`). Work projects from
-  the CV appear only as part of the career.
+- Personal projects: the master's thesis (LumosNet, `../../master/tfm`) and the author's
+  projects in progress (`../aws`, `../traffic`, `../stock-app`, `../datos`). Professional
+  projects (Reboot Academy, PowerBIM) come from the CV only: no repository is linked, nothing
+  beyond what the CV says about them.
 - Sources of truth for facts: the CV (`../ai-job-search/documents/cv/`) and each project's
   repository (README, roadmap, specs). The site never states what those do not say.
 

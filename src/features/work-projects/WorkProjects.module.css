@@ -1,0 +1,170 @@
+/*
+ * Work projects, one block per employer. Each block takes its job's hue from the timeline
+ * (--career-*), so "Reboot Academy" here and in Experience read as the same thing.
+ */
+
+[data-kind="work"] {
+  --kind: var(--career-work);
+}
+
+[data-kind="teaching"] {
+  --kind: var(--career-teaching);
+}
+
+.groups {
+  display: grid;
+  gap: var(--space-4);
+}
+
+/* Folded: one bar per employer, banded in its hue. */
+.groupButton {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-3);
+  width: 100%;
+  min-height: 2.75rem;
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--color-line);
+  border-left: 4px solid var(--kind);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease;
+}
+
+.groupButton:hover,
+.group[data-open="true"] .groupButton {
+  border-color: var(--kind);
+}
+
+.groupButton:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.groupName {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
+}
+
+.years,
+.count {
+  color: var(--color-muted);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+/* The count and the chevron go to the right edge, the chevron turns when open. */
+.count {
+  margin-left: auto;
+}
+
+.chevron {
+  flex: none;
+  align-self: center;
+  color: var(--kind);
+  transition: transform 150ms ease;
+}
+
+.group[data-open="true"] .chevron {
+  transform: rotate(180deg);
+}
+
+/* Unfolded content; `hidden` must win over the grid display. */
+.panel {
+  display: grid;
+  gap: var(--space-4);
+  padding-top: var(--space-4);
+  animation: unfold 200ms ease-out;
+}
+
+.panel[hidden] {
+  display: none;
+}
+
+@keyframes unfold {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+/* Cards keep one width: a job with a single project does not get one card across the page. */
+.cards {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 24rem), 1fr));
+  gap: var(--space-4);
+}
+
+.cards > li {
+  display: flex;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-5);
+  border: 1px solid var(--color-line);
+  border-top: 4px solid var(--kind);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+
+.card h4 {
+  font-size: var(--text-lg);
+  font-weight: 700;
+}
+
+.description {
+  color: var(--color-ink-soft);
+}
+
+/* The base heading margin would push the list away; the card's gap spaces it instead. */
+.subheading {
+  margin: var(--space-2) 0 0;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.features {
+  display: grid;
+  gap: var(--space-2);
+  padding-left: var(--space-4);
+  color: var(--color-ink-soft);
+  font-size: var(--text-sm);
+}
+
+.features li::marker {
+  color: var(--kind);
+}
+
+.stack {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.stack li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 2px var(--space-2);
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+}

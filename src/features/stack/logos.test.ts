@@ -3,6 +3,8 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
 import { skills } from "@/content/career";
+import { projects } from "@/content/projects";
+import { workProjects } from "@/content/work-projects";
 
 import { contrastRatio, legibleColour, MIN_LOGO_CONTRAST } from "./colour";
 import { LOGOS, THEME_COLOURS } from "./logos";
@@ -44,7 +46,25 @@ describe("LOGOS", () => {
   it("has a mark for every technology in the stack", () => {
     for (const group of skills) {
       for (const item of group.items) {
-        expect(LOGOS[item], item).toBeDefined();
+        expect(LOGOS[item.name], item.name).toBeDefined();
+      }
+    }
+  });
+
+  it("has a mark for every technology of the personal projects", () => {
+    for (const project of projects) {
+      for (const item of project.stack) {
+        expect(LOGOS[item], `${project.id}: ${item}`).toBeDefined();
+      }
+    }
+  });
+
+  it("has a mark for every technology of the work projects", () => {
+    for (const group of workProjects) {
+      for (const project of group.projects) {
+        for (const item of project.stack) {
+          expect(LOGOS[item], `${project.id}: ${item}`).toBeDefined();
+        }
       }
     }
   });

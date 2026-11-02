@@ -1,32 +1,63 @@
-.sheet {
-  margin: 0;
-  border-top: 2px solid var(--color-ink);
-}
+/*
+ * Two tables, last year and before. Rows are groups, columns are contexts (professional,
+ * both, personal); a table only has the rows and columns with something in them. The earlier
+ * one is muted. On a phone each row stacks, and each cell says its column.
+ */
 
-.line {
+.tables {
   display: grid;
-  grid-template-columns: minmax(12rem, 1fr) minmax(0, 3fr);
-  gap: var(--space-2) var(--space-5);
-  padding: var(--space-4) 0;
-  border-bottom: 1px solid var(--color-line);
+  gap: var(--space-7);
 }
 
-.line dt {
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.table caption {
+  margin-bottom: var(--space-3);
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  text-align: left;
+}
+
+.table thead th {
+  padding: 0 var(--space-4) var(--space-2) 0;
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-align: left;
+  border-bottom: 2px solid var(--color-ink);
+}
+
+/* The group column: fixed, the context columns share the rest. */
+.table thead td {
+  width: 12rem;
+  border-bottom: 2px solid var(--color-ink);
+}
+
+.table tbody th,
+.table tbody td {
+  padding: var(--space-4) var(--space-4) var(--space-4) 0;
+  border-bottom: 1px solid var(--color-line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.table tbody th {
   font-weight: 700;
 }
 
-.line dd {
-  margin: 0;
-}
-
-.line ul {
+.skills {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2) var(--space-5);
+  gap: var(--space-2) var(--space-4);
 }
 
-.line li {
+.skills li {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
@@ -35,28 +66,73 @@
   font-weight: 500;
 }
 
-/* Brand logos carry a colour per theme (logos.ts); generic icons take the muted ink. */
-.logo {
-  flex: none;
-  width: 1.1em;
-  height: 1.1em;
+/* Before the last year: smaller, muted text and grey logos. */
+.block[data-earlier="true"] .skills li {
   color: var(--color-muted);
+  font-size: var(--text-base);
+  font-weight: 400;
 }
 
-.logo[data-brand] {
-  fill: var(--logo-light);
+.block[data-earlier="true"] .skills svg {
+  filter: grayscale(1);
+  opacity: 0.7;
 }
 
-:root[data-theme="dark"] .logo[data-brand] {
-  fill: var(--logo-dark);
+.unplaced {
+  margin-top: var(--space-3);
+  color: var(--color-muted);
+  font-size: var(--text-sm);
 }
 
-@media (max-width: 600px) {
-  .line {
-    grid-template-columns: minmax(0, 1fr);
+@media (max-width: 720px) {
+  .table,
+  .table tbody,
+  .table tr,
+  .table tbody th,
+  .table tbody td {
+    display: block;
+    width: auto;
   }
 
-  .line li {
+  /* A block table would shrink the caption to its widest word. */
+  .table caption {
+    display: block;
+  }
+
+  /* The header row's labels move into each cell (data-column). */
+  .table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  .table tbody tr {
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .table tbody th,
+  .table tbody td {
+    padding: var(--space-1) 0;
+    border: 0;
+  }
+
+  .table tbody td:empty {
+    display: none;
+  }
+
+  .table tbody td::before {
+    content: attr(data-column);
+    display: block;
+    margin-bottom: var(--space-1);
+    color: var(--color-muted);
+    font-size: var(--text-xs);
+    font-weight: 700;
+  }
+
+  .skills li {
     font-size: var(--text-base);
   }
 }

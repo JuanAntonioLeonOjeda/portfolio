@@ -18,7 +18,8 @@ export function Hero(): React.JSX.Element {
         <p className={styles.role}>{pick(profile.role, lang)}</p>
         <p className={styles.summary}>{pick(profile.summary, lang)}</p>
         <div className={styles.actions}>
-          <a href="#contact" className={styles.cta}>
+          {/* Straight to the mail client: the contact section repeats the address for copying. */}
+          <a href={`mailto:${profile.email}`} className={styles.cta}>
             {t.hero.contact}
           </a>
           <ExternalLink href={profile.github} className={styles.link}>

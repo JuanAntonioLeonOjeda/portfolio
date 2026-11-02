@@ -5,12 +5,14 @@ export const en: Messages = {
   app: {
     skipToContent: "Skip to content",
     description:
-      "Portfolio of Juan Antonio León Ojeda, full-stack developer: projects, career and stack.",
+      "Portfolio of Juan Antonio León Ojeda, full-stack developer: personal and professional projects, experience, education and stack.",
   },
   nav: {
     label: "Sections",
-    projects: "Projects",
-    career: "Career",
+    projects: "Personal",
+    work: "Professional",
+    experience: "Experience",
+    education: "Education",
     stack: "Stack",
     contact: "Contact",
   },
@@ -24,7 +26,7 @@ export const en: Messages = {
     contact: "Get in touch",
   },
   projects: {
-    heading: "Projects",
+    heading: "Personal projects",
     lead: "My master's thesis and what I am building now, each one to learn something specific.",
     highlightsHeading: "What is interesting",
     stackLabel: "Technologies",
@@ -34,17 +36,35 @@ export const en: Messages = {
     privateRepo: "Private repository",
     phases: (done: number, total: number): string => `${done} of ${total} phases done`,
   },
+  workProjects: {
+    heading: "Professional projects",
+    lead: "What I have built at work, at Reboot Academy and PowerBIM.",
+    features: "Main features",
+    stack: "Stack",
+    count: (n: number): string => (n === 1 ? "1 project" : `${n} projects`),
+  },
+  experience: {
+    heading: "Experience",
+    lead: "From technical sales to software, by way of teaching.",
+    chartLabel: "Timeline of jobs",
+  },
+  education: {
+    heading: "Education",
+    lead: "From mechanical engineering to artificial intelligence.",
+    chartLabel: "Timeline of studies",
+  },
   career: {
-    heading: "Career",
-    lead: "From mechanical engineering to software, by way of teaching.",
-    chartLabel: "Timeline of studies and jobs",
     present: "now",
     kinds: { work: "Work", teaching: "Work and teaching", study: "Education" },
     legend: "Legend",
   },
   stack: {
     heading: "Stack",
-    lead: "What I work with every day and what I have used in projects.",
+    lead: "Above, what I have used in the last year; below, the earlier ones. By column, whether it was at work, in my projects or both.",
+    recent: "Last year",
+    earlier: "Earlier",
+    columns: { work: "Professional", both: "Professional and personal", personal: "Personal" },
+    unplaced: "Also:",
   },
   contact: {
     heading: "Let's talk",
