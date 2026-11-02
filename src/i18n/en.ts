@@ -61,7 +61,11 @@ export const en: Messages = {
   },
   stack: {
     heading: "Stack",
-    lead: "What I work with every day and what I have used in projects.",
+    lead: "Above, what I have used in the last year; below, the earlier ones. By column, whether it was at work, in my projects or both.",
+    recent: "Last year",
+    earlier: "Earlier",
+    columns: { work: "Professional", both: "Professional and personal", personal: "Personal" },
+    unplaced: "Also:",
   },
   contact: {
     heading: "Let's talk",

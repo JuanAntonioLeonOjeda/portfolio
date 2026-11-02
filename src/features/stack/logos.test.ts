@@ -46,7 +46,7 @@ describe("LOGOS", () => {
   it("has a mark for every technology in the stack", () => {
     for (const group of skills) {
       for (const item of group.items) {
-        expect(LOGOS[item], item).toBeDefined();
+        expect(LOGOS[item.name], item.name).toBeDefined();
       }
     }
   });
