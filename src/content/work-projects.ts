@@ -1,9 +1,14 @@
 import type { WorkProjectGroup } from "./types";
 
 /**
- * Source: the author's CV (ai-job-search/documents/cv), section "Proyectos". Descriptions,
- * features and stacks are the CV's; the "otros proyectos" have only a name and a stack there,
- * so that is all they show. Groups in the order of `experience`; content.test.ts checks it.
+ * Sources:
+ * - Reboot Academy: the author's CV (ai-job-search/documents/cv), section "Proyectos". The
+ *   "otros proyectos" have only a name and a stack there, so that is all they show.
+ * - PowerBIM: the CV for the mobile app's features; the package manifests the author shared
+ *   (2 November 2026) for the stacks; the author for what each project does and his part in
+ *   it (all of the app; most of the platform's front end and its AI part, so the platform's
+ *   features list only those, while its stack shows the whole project's main technologies).
+ * Groups in the order of `experience`; content.test.ts checks it.
  */
 export const workProjects: readonly WorkProjectGroup[] = [
   {
@@ -85,8 +90,8 @@ export const workProjects: readonly WorkProjectGroup[] = [
         id: "powerbim-app",
         name: { es: "App móvil de PowerBIM", en: "PowerBIM mobile app" },
         description: {
-          es: "App para móviles y tablets para gestionar incidencias en edificios.",
-          en: "Phone and tablet app for managing incidents in buildings.",
+          es: "App para móviles y tablets para gestionar incidencias en edificios, con su propio backend. La he hecho entera, front y back.",
+          en: "Phone and tablet app for managing incidents in buildings, with its own back end. I built all of it, front and back.",
         },
         features: [
           {
@@ -102,7 +107,75 @@ export const workProjects: readonly WorkProjectGroup[] = [
             en: "3D model viewing.",
           },
         ],
-        stack: ["React Native", "Expo", "AR", "Docker"],
+        stack: [
+          "React Native",
+          "Expo",
+          "TypeScript",
+          "AR",
+          "NestJS",
+          "PostgreSQL",
+          "MongoDB",
+          "MQTT",
+          "Docker",
+        ],
+      },
+      {
+        id: "powerbim-platform",
+        name: { es: "Plataforma web de PowerBIM", en: "PowerBIM web platform" },
+        description: {
+          es: "Plataforma web para gestionar gemelos digitales de edificios. Me encargo de casi todo el front y de la parte de IA.",
+          en: "Web platform for managing digital twins of buildings. I do most of the front end and the AI part.",
+        },
+        features: [
+          {
+            es: "Asistente de IA que responde preguntas sobre el edificio.",
+            en: "An AI assistant that answers questions about the building.",
+          },
+          {
+            es: "Auditorías del modelo BIM con IA: revisión de parámetros y de cumplimiento de la normativa ISO.",
+            en: "AI audits of the BIM model: parameter checks and compliance with ISO standards.",
+          },
+          {
+            es: "Servidor MCP con los prompts, agentes, herramientas y sesiones del asistente, y un agente en Python sobre AWS Bedrock.",
+            en: "An MCP server with the assistant's prompts, agents, tools and sessions, and a Python agent on AWS Bedrock.",
+          },
+          {
+            es: "Gran parte de la interfaz web de la plataforma.",
+            en: "Most of the platform's web interface.",
+          },
+        ],
+        stack: [
+          "React",
+          "TypeScript",
+          "Tailwind",
+          "Three.js",
+          "Leaflet",
+          "Socket.io",
+          "NestJS",
+          "Claude",
+          "MCP",
+          "AWS Bedrock",
+          "Python",
+        ],
+      },
+      {
+        id: "mqtt-platform",
+        name: { es: "Plataforma de gestión MQTT", en: "MQTT management platform" },
+        description: {
+          es: "Servicio que obtiene las lecturas de los sensores y las envía al broker MQTT.",
+          en: "A service that collects sensor readings and sends them to the MQTT broker.",
+        },
+        features: [
+          {
+            es: "Obtención de las lecturas de los sensores.",
+            en: "Collection of the sensor readings.",
+          },
+          {
+            es: "Envío de los datos al broker MQTT.",
+            en: "Delivery of the data to the MQTT broker.",
+          },
+        ],
+        stack: ["NestJS", "TypeScript", "Node.js", "MQTT"],
       },
     ],
   },
