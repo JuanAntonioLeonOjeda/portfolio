@@ -12,7 +12,7 @@ const LANGUAGES: readonly { lang: Lang; label: string; name: string }[] = [
   { lang: "en", label: "EN", name: "English" },
 ];
 
-const SECTIONS = ["projects", "experience", "education", "stack", "contact"] as const;
+const SECTIONS = ["projects", "work", "experience", "education", "stack", "contact"] as const;
 
 export function Header(): React.JSX.Element {
   const t = useMessages();

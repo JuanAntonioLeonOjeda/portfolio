@@ -13,17 +13,19 @@ Pages serves the build; nginx serves the same build locally in Docker.
 src/
   app/                  # App: skip link, header, sections in order, footer
   content/              # the facts, both languages side by side
-    types.ts            # Lang, Localized, Project, CareerEntry, SkillGroup
+    types.ts            # Lang, Localized, Project, WorkProjectGroup, CareerEntry, SkillGroup
     profile.ts          # name, role, summary, public links
-    projects.ts         # featured project first
+    projects.ts         # personal projects, featured first
+    work-projects.ts    # professional projects, grouped by job (ids from experience)
     career.ts           # experience and education (chronological) and skill groups
   design/               # tokens (light/dark), base styles
   i18n/                 # es.ts (source, defines Messages), en.ts, index.ts
   features/
     shell/              # header, footer, theme and language stores
-    hero/ projects/ stack/ contact/   # one section each
+    hero/ projects/ work-projects/ stack/ contact/   # one section each
     career/             # two sections, Experience and Education, sharing a CareerTimeline
     ui/                 # Section, ExternalLink
+    (stack/ also exports TechLogo, the logo next to a technology name)
 ```
 
 ## How languages work (ADR-0002)

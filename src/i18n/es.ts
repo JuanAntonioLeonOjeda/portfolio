@@ -1,16 +1,17 @@
 /**
  * Every user-facing string of the page chrome, in Spanish (the source language). Content
- * (projects, experience, education, skills) lives in src/content/ with both languages side by side.
+ * (projects, work projects, experience, education, skills) lives in src/content/ with both languages side by side.
  */
 export const es = {
   app: {
     skipToContent: "Saltar al contenido",
     description:
-      "Portfolio de Juan Antonio León Ojeda, desarrollador full-stack: proyectos, experiencia, formación y stack.",
+      "Portfolio de Juan Antonio León Ojeda, desarrollador full-stack: proyectos personales y profesionales, experiencia, formación y stack.",
   },
   nav: {
     label: "Secciones",
-    projects: "Proyectos",
+    projects: "Personales",
+    work: "Profesionales",
     experience: "Experiencia",
     education: "Formación",
     stack: "Stack",
@@ -26,7 +27,7 @@ export const es = {
     contact: "Escríbeme",
   },
   projects: {
-    heading: "Proyectos",
+    heading: "Proyectos personales",
     lead: "El TFM del máster y lo que estoy construyendo ahora, cada uno para aprender algo concreto.",
     highlightsHeading: "Lo interesante",
     stackLabel: "Tecnologías",
@@ -35,6 +36,14 @@ export const es = {
     previewSoon: "Vista previa próximamente",
     privateRepo: "Repositorio privado",
     phases: (done: number, total: number): string => `${done} de ${total} fases terminadas`,
+  },
+  workProjects: {
+    heading: "Proyectos profesionales",
+    lead: "Lo que he construido en el trabajo, en Reboot Academy y en PowerBIM.",
+    features: "Funcionalidades principales",
+    stack: "Stack",
+    others: "Otros proyectos",
+    count: (n: number): string => (n === 1 ? "1 proyecto" : `${n} proyectos`),
   },
   experience: {
     heading: "Experiencia",

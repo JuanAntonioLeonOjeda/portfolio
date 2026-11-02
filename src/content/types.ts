@@ -85,3 +85,27 @@ export interface SkillGroup {
   readonly title: Localized;
   readonly items: readonly string[];
 }
+
+/** A project built at a job: what it is, what it does and what it is built with. */
+export interface WorkProject {
+  readonly id: string;
+  readonly name: Localized;
+  readonly description: Localized;
+  readonly features: readonly Localized[];
+  /** Technology names as in the stack section, so each one gets its logo. */
+  readonly stack: readonly string[];
+}
+
+/** A smaller project at the same job, listed by name and stack only (as the CV does). */
+export interface MinorWorkProject {
+  readonly id: string;
+  readonly name: Localized;
+  readonly stack: readonly string[];
+}
+
+/** The projects of one job; `id` is that job's entry in `experience` (it gives the years). */
+export interface WorkProjectGroup {
+  readonly id: string;
+  readonly projects: readonly WorkProject[];
+  readonly others?: readonly MinorWorkProject[];
+}

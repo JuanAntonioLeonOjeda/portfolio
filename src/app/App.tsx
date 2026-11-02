@@ -4,6 +4,7 @@ import { Hero } from "@/features/hero";
 import { Projects } from "@/features/projects";
 import { Footer, Header, useMessages } from "@/features/shell";
 import { Stack } from "@/features/stack";
+import { WorkProjects } from "@/features/work-projects";
 
 import styles from "./App.module.css";
 
@@ -20,6 +21,7 @@ export function App(): React.JSX.Element {
       <main id="main">
         <Hero />
         <Projects />
+        <WorkProjects />
         <Experience />
         <Education />
         <Stack />

@@ -117,8 +117,8 @@
   font-size: var(--text-sm);
 }
 
-/* Section links (five of them) fit next to the full name from 920px up; below, one scroll. */
-@media (max-width: 920px) {
+/* Section links (six of them) fit next to the full name from 1024px up; below, one scroll. */
+@media (max-width: 1024px) {
   .nav {
     display: none;
   }

@@ -6,6 +6,7 @@ import { education, experience, skills } from "./career";
 import { profile } from "./profile";
 import { projects } from "./projects";
 import type { Localized } from "./types";
+import { workProjects } from "./work-projects";
 
 /** Every Localized value reachable from a content object, with its path for the message. */
 function collectLocalized(value: unknown, path: string, found: [string, Localized][]): void {
@@ -26,7 +27,11 @@ const tokens = readFileSync("src/design/tokens.css", "utf8");
 describe("content", () => {
   it("has every text in both languages, none of them empty", () => {
     const found: [string, Localized][] = [];
-    collectLocalized({ profile, projects, experience, education, skills }, "content", found);
+    collectLocalized(
+      { profile, projects, workProjects, experience, education, skills },
+      "content",
+      found,
+    );
     expect(found.length).toBeGreaterThan(0);
     for (const [path, text] of found) {
       expect(text.es.trim(), `${path}.es`).not.toBe("");
@@ -96,13 +101,27 @@ describe("content", () => {
     }
   });
 
+  it("ties each group of work projects to a job, in the order of the experience", () => {
+    const jobs = experience.map((entry) => entry.id);
+    const groups = workProjects.map((group) => group.id);
+    for (const id of groups) {
+      expect(jobs, id).toContain(id);
+    }
+    expect(groups).toEqual([...groups].sort((a, b) => jobs.indexOf(a) - jobs.indexOf(b)));
+    const ids = workProjects.flatMap((group) => [
+      ...group.projects.map((project) => project.id),
+      ...(group.others ?? []).map((project) => project.id),
+    ]);
+    expect(new Set(ids).size).toBe(ids.length);
+  });
+
   it("keeps work in experience and studies in education", () => {
     expect(experience.every((entry) => entry.kind !== "study")).toBe(true);
     expect(education.every((entry) => entry.kind === "study")).toBe(true);
   });
 
   it("does not publish a phone number", () => {
-    const text = JSON.stringify({ profile, projects, experience, education, skills });
+    const text = JSON.stringify({ profile, projects, workProjects, experience, education, skills });
     expect(text).not.toMatch(/\b[6-9]\d{2}\s?\d{3}\s?\d{3}\b/);
   });
 });

@@ -2,6 +2,7 @@ import { Globe, Image as ImageIcon } from "lucide-react";
 
 import { pick, type Lang, type Project, type ProjectStatus } from "@/content/types";
 import { useLanguage, useMessages } from "@/features/shell";
+import { TechLogo } from "@/features/stack";
 import { ExternalLink } from "@/features/ui";
 
 import { hueStyle } from "./hue";
@@ -66,7 +67,10 @@ function ProjectFacts({ project, lang }: { project: Project; lang: Lang }): Reac
         <h4 className={styles.subheading}>{t.projects.stackLabel}</h4>
         <ul className={styles.stack}>
           {project.stack.map((item) => (
-            <li key={item}>{item}</li>
+            <li key={item}>
+              <TechLogo name={item} />
+              {item}
+            </li>
           ))}
         </ul>
       </div>

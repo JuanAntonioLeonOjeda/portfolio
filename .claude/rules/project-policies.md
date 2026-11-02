@@ -14,9 +14,10 @@ the featured projects, his experience and education, the stack and how to get in
   no accounts, **no cookies, no analytics**.
 - Two languages with no i18n library (ADR-0002): UI strings in `src/i18n/`, content with both
   languages side by side in `src/content/`.
-- Projects featured: the master's thesis (LumosNet, `../../master/tfm`) and the author's
-  personal projects in progress (`../aws`, `../traffic`, `../stock-app`). Work projects from
-  the CV appear only as part of the career.
+- Personal projects: the master's thesis (LumosNet, `../../master/tfm`) and the author's
+  projects in progress (`../aws`, `../traffic`, `../stock-app`, `../datos`). Professional
+  projects (Reboot Academy, PowerBIM) come from the CV only: no repository is linked, nothing
+  beyond what the CV says about them.
 - Sources of truth for facts: the CV (`../ai-job-search/documents/cv/`) and each project's
   repository (README, roadmap, specs). The site never states what those do not say.
 

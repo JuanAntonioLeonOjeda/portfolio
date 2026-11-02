@@ -5,11 +5,12 @@ export const en: Messages = {
   app: {
     skipToContent: "Skip to content",
     description:
-      "Portfolio of Juan Antonio León Ojeda, full-stack developer: projects, experience, education and stack.",
+      "Portfolio of Juan Antonio León Ojeda, full-stack developer: personal and professional projects, experience, education and stack.",
   },
   nav: {
     label: "Sections",
-    projects: "Projects",
+    projects: "Personal",
+    work: "Professional",
     experience: "Experience",
     education: "Education",
     stack: "Stack",
@@ -25,7 +26,7 @@ export const en: Messages = {
     contact: "Get in touch",
   },
   projects: {
-    heading: "Projects",
+    heading: "Personal projects",
     lead: "My master's thesis and what I am building now, each one to learn something specific.",
     highlightsHeading: "What is interesting",
     stackLabel: "Technologies",
@@ -34,6 +35,14 @@ export const en: Messages = {
     previewSoon: "Preview coming soon",
     privateRepo: "Private repository",
     phases: (done: number, total: number): string => `${done} of ${total} phases done`,
+  },
+  workProjects: {
+    heading: "Professional projects",
+    lead: "What I have built at work, at Reboot Academy and PowerBIM.",
+    features: "Main features",
+    stack: "Stack",
+    others: "Other projects",
+    count: (n: number): string => (n === 1 ? "1 project" : `${n} projects`),
   },
   experience: {
     heading: "Experience",
