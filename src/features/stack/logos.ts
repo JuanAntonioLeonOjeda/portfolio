@@ -13,6 +13,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import {
+  siClaude,
   siD3,
   siDart,
   siDocker,
@@ -28,6 +29,7 @@ import {
   siLeaflet,
   siMongodb,
   siMongoose,
+  siModelcontextprotocol,
   siMqtt,
   siMysql,
   siN8n,
@@ -51,6 +53,7 @@ import {
   siStellar,
   siStripe,
   siTailwindcss,
+  siThreedotjs,
   siTimescale,
   siTypescript,
   siUltralytics,
@@ -149,6 +152,10 @@ export const LOGOS: Readonly<Record<string, Logo>> = {
   DynamoDB: { kind: "generic", icon: Database },
   fl_chart: { kind: "generic", icon: ChartLine },
   // Only in the work projects.
+  "Three.js": brand(siThreedotjs),
+  Claude: brand(siClaude),
+  MCP: brand(siModelcontextprotocol),
+  "AWS Bedrock": { kind: "generic", icon: Cloud },
   "Next.js": brand(siNextdotjs),
   Nuxt: brand(siNuxt),
   Leaflet: brand(siLeaflet),
