@@ -32,8 +32,8 @@ description: How the site's copy is written — facts from sources, tone in both
 ## Checks
 
 - `src/content/content.test.ts`: both languages present and non-empty, project hues exist as
-  tokens, only the author's GitHub repos linked, phases within total, chronological career,
-  no phone number.
+  tokens, only the author's GitHub repos linked, phases within total, experience and education
+  in chronological order, work projects tied to a job in `experience`, no phone number.
 - `en.ts` is typed as `Messages`: a missing key is a compile error.
 
 Review with the `content-reviewer` agent.

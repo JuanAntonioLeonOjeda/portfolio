@@ -1,5 +1,19 @@
-import { Cable, Cloud, type LucideIcon } from "lucide-react";
 import {
+  Cable,
+  ChartLine,
+  Cloud,
+  Database,
+  FileImage,
+  HardDrive,
+  Inbox,
+  Rotate3d,
+  ScanSearch,
+  Sparkles,
+  Zap,
+  type LucideIcon,
+} from "lucide-react";
+import {
+  siD3,
   siDart,
   siDocker,
   siExpo,
@@ -8,30 +22,41 @@ import {
   siFlutter,
   siGit,
   siGithubactions,
+  siHuggingface,
   siJavascript,
   siJest,
+  siLeaflet,
   siMongodb,
   siMongoose,
   siMqtt,
   siMysql,
   siN8n,
   siNestjs,
+  siNextdotjs,
   siNodedotjs,
   siNumpy,
+  siNuxt,
   siOpencv,
   siPandas,
   siPostgresql,
   siPython,
   siPytorch,
   siReact,
+  siReactquery,
   siRedis,
   siScikitlearn,
   siSequelize,
+  siSqlalchemy,
+  siStellar,
+  siStripe,
   siTailwindcss,
   siTimescale,
   siTypescript,
+  siUltralytics,
   siVitest,
   siVuedotjs,
+  siZapier,
+  siZod,
   type SimpleIcon,
 } from "simple-icons";
 
@@ -48,7 +73,8 @@ export const THEME_COLOURS = {
 
 /**
  * A technology's mark: its Simple Icons logo, or a generic icon when there is no honest logo
- * (Simple Icons dropped Amazon's marks; WebSockets is a protocol, not Socket.io).
+ * (Simple Icons dropped Amazon's and OpenAI's marks; WebSockets is a protocol, not Socket.io;
+ * AR and web scraping are techniques, not products; pgvector, pydicom and fl_chart have none).
  */
 export type Logo =
   | { readonly kind: "brand"; readonly path: string; readonly light: string; readonly dark: string }
@@ -64,7 +90,11 @@ function brand(icon: SimpleIcon): Logo {
   };
 }
 
-/** Keyed by the names used in `skills` (src/content/career.ts); a test checks none is missing. */
+/**
+ * Keyed by the names used in `skills` (src/content/career.ts), in the personal projects
+ * (src/content/projects.ts) and in the work projects (src/content/work-projects.ts); a test
+ * checks none is missing.
+ */
 export const LOGOS: Readonly<Record<string, Logo>> = {
   TypeScript: brand(siTypescript),
   JavaScript: brand(siJavascript),
@@ -102,4 +132,29 @@ export const LOGOS: Readonly<Record<string, Logo>> = {
   Jest: brand(siJest),
   Vitest: brand(siVitest),
   n8n: brand(siN8n),
+  // Only in the personal projects. TanStack Query keeps React Query's mark; SetFit is a
+  // Hugging Face library.
+  "Ultralytics YOLO": brand(siUltralytics),
+  pydicom: { kind: "generic", icon: FileImage },
+  pgvector: { kind: "generic", icon: Database },
+  SetFit: brand(siHuggingface),
+  SQLAlchemy: brand(siSqlalchemy),
+  "TanStack Query": brand(siReactquery),
+  Zod: brand(siZod),
+  Lambda: { kind: "generic", icon: Zap },
+  S3: { kind: "generic", icon: HardDrive },
+  SQS: { kind: "generic", icon: Inbox },
+  DynamoDB: { kind: "generic", icon: Database },
+  fl_chart: { kind: "generic", icon: ChartLine },
+  // Only in the work projects.
+  "Next.js": brand(siNextdotjs),
+  Nuxt: brand(siNuxt),
+  Leaflet: brand(siLeaflet),
+  D3: brand(siD3),
+  Stripe: brand(siStripe),
+  Stellar: brand(siStellar),
+  Zapier: brand(siZapier),
+  OpenAI: { kind: "generic", icon: Sparkles },
+  AR: { kind: "generic", icon: Rotate3d },
+  "Web scraping": { kind: "generic", icon: ScanSearch },
 };

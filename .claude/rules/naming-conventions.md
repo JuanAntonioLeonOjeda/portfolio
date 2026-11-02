@@ -8,8 +8,8 @@ description: Naming conventions for files, components, hooks, content ids, i18n 
   everything else `kebab-case.ts` (or a single lowercase word: `timeline.ts`).
 - Content ids: short kebab-case, unique in their list (`energy-analyzer`, `powerbim`). A
   project id is also its heading's `id`.
-- Section ids are English nouns that match the header links (`projects`, `career`, `stack`,
-  `contact`).
+- Section ids are English nouns that match the header links (`projects`, `work`,
+  `experience`, `education`, `stack`, `contact`).
 - One main responsibility per file; `utils.ts` or `helpers.ts` is a smell.
 - Tests next to the code: `<file>.test.ts(x)`.
 - `PascalCase` types and components, `camelCase` variables and functions,

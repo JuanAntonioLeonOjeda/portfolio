@@ -2,7 +2,9 @@ import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it } from "vitest";
 
+import { profile } from "@/content/profile";
 import { projects } from "@/content/projects";
+import { workProjects } from "@/content/work-projects";
 
 import { App } from "./App";
 
@@ -17,12 +19,56 @@ describe("App", () => {
     expect(
       screen.getByRole("heading", { level: 1, name: "Juan Antonio León Ojeda" }),
     ).toBeInTheDocument();
-    for (const name of ["Proyectos", "Trayectoria", "Stack", "Hablemos"]) {
+    for (const name of [
+      "Proyectos personales",
+      "Proyectos profesionales",
+      "Experiencia",
+      "Formación",
+      "Stack",
+      "Hablemos",
+    ]) {
       expect(screen.getByRole("heading", { level: 2, name })).toBeInTheDocument();
     }
     for (const project of projects) {
       expect(screen.getByRole("heading", { level: 3, name: project.name })).toBeInTheDocument();
     }
+  });
+
+  it("groups the work projects by employer, folded until opened", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    for (const name of [/Reboot Academy/, /PowerBIM/]) {
+      const toggle = screen.getByRole("button", { name });
+      expect(toggle).toHaveAttribute("aria-expanded", "false");
+      await user.click(toggle);
+      expect(toggle).toHaveAttribute("aria-expanded", "true");
+    }
+    const reboot = screen.getByRole("region", { name: /Reboot Academy/ });
+    const powerbim = screen.getByRole("region", { name: /PowerBIM/ });
+    expect(
+      within(reboot).getByRole("heading", { level: 4, name: "ElectroTaro" }),
+    ).toBeInTheDocument();
+    expect(
+      within(powerbim).getByRole("heading", { level: 4, name: "App móvil de PowerBIM" }),
+    ).toBeInTheDocument();
+    for (const project of workProjects.flatMap((group) => group.projects)) {
+      const card = screen
+        .getByRole("heading", { level: 4, name: project.name.es })
+        .closest("article");
+      expect(card).not.toBeNull();
+      expect(card).toHaveTextContent(project.description.es);
+      for (const item of project.stack) {
+        expect(card).toHaveTextContent(item);
+      }
+    }
+  });
+
+  it("opens an email from the hero's call to action", () => {
+    render(<App />);
+    expect(screen.getByRole("link", { name: "Escríbeme" })).toHaveAttribute(
+      "href",
+      `mailto:${profile.email}`,
+    );
   });
 
   it("links the header to each section", () => {
@@ -31,7 +77,14 @@ describe("App", () => {
     const targets = within(nav)
       .getAllByRole("link")
       .map((link) => link.getAttribute("href"));
-    expect(targets).toEqual(["#projects", "#career", "#stack", "#contact"]);
+    expect(targets).toEqual([
+      "#projects",
+      "#work",
+      "#experience",
+      "#education",
+      "#stack",
+      "#contact",
+    ]);
     for (const target of targets) {
       expect(document.querySelector(target ?? "")).not.toBeNull();
     }
@@ -45,7 +98,9 @@ describe("App", () => {
 
     expect(document.documentElement.lang).toBe("en");
     expect(localStorage.getItem("portfolio-idioma")).toBe("en");
-    expect(screen.getByRole("heading", { level: 2, name: "Projects" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { level: 2, name: "Personal projects" }),
+    ).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "English" })).toHaveAttribute("aria-pressed", "true");
   });
 
