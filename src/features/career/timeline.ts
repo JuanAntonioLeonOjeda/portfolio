@@ -2,8 +2,9 @@
  * Placement of career entries on a horizontal year axis (the Gantt chart in Career.tsx).
  *
  * Years are coarse (the CV says "2018 – 2021"), so an entry covers [start, end) with both ends
- * on 1 January: consecutive entries touch without overlapping. An ongoing entry ends at `now`,
- * a fractional year. The axis starts at `from`; anything earlier is clipped to the left edge
+ * on 1 January: consecutive entries touch without overlapping. When the end month is known
+ * (`endMonth`, 1–12) the entry ends with that month instead. An ongoing entry ends at `now`, a
+ * fractional year. The axis starts at `from`; anything earlier is clipped to the left edge
  * and flagged, so the chart does not spend half its width on the degree.
  */
 
@@ -16,6 +17,7 @@ export interface TimelineAxis {
 export interface TimelineSpan {
   readonly start: number;
   readonly end: number | null;
+  readonly endMonth?: number;
 }
 
 export interface TimelineBar {
@@ -47,10 +49,18 @@ export function positionOf(year: number, axis: TimelineAxis): number {
   return Math.min(100, Math.max(0, ratio * 100));
 }
 
+/** Where a span ends as a fractional year: 1 January, the end of its last month, or `now`. */
+export function endOf(span: TimelineSpan, now: number): number {
+  if (span.end === null) {
+    return now;
+  }
+  return span.endMonth === undefined ? span.end : span.end + span.endMonth / 12;
+}
+
 export function placeSpan(span: TimelineSpan, axis: TimelineAxis, now: number): TimelineBar {
   const isOngoing = span.end === null;
   const left = positionOf(span.start, axis);
-  const right = positionOf(span.end ?? now, axis);
+  const right = positionOf(endOf(span, now), axis);
   return {
     left,
     width: right - left,

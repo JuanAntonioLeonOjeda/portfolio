@@ -1,4 +1,4 @@
-import { Career } from "@/features/career";
+import { Education, Experience } from "@/features/career";
 import { Contact } from "@/features/contact";
 import { Hero } from "@/features/hero";
 import { Projects } from "@/features/projects";
@@ -20,7 +20,8 @@ export function App(): React.JSX.Element {
       <main id="main">
         <Hero />
         <Projects />
-        <Career />
+        <Experience />
+        <Education />
         <Stack />
         <Contact />
       </main>

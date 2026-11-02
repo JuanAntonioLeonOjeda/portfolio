@@ -76,7 +76,8 @@ export interface CareerEntry {
   readonly start: number;
   /** `null` while it is still going on. */
   readonly end: number | null;
-  readonly detail?: Localized;
+  /** Month the entry ended (1–12), when known: the timeline bar ends with it. */
+  readonly endMonth?: number;
 }
 
 export interface SkillGroup {

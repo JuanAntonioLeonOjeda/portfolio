@@ -1,15 +1,11 @@
 import type { CareerEntry, SkillGroup } from "./types";
 
-/** Source: the author's CV. In chronological order of start (content.test.ts checks it). */
-export const career: readonly CareerEntry[] = [
-  {
-    id: "ulpgc",
-    kind: "study",
-    title: { es: "Grado en Ingeniería Mecánica", en: "Degree in Mechanical Engineering" },
-    place: "Universidad de Las Palmas de Gran Canaria",
-    start: 2006,
-    end: 2017,
-  },
+/**
+ * Source: the author's CV; titles as the author words them. Each list in chronological order of
+ * start (content.test.ts checks it). Experience and education are separate sections that share
+ * one year axis; what was done at each job goes elsewhere.
+ */
+export const experience: readonly CareerEntry[] = [
   {
     id: "moeller",
     kind: "work",
@@ -19,44 +15,48 @@ export const career: readonly CareerEntry[] = [
     end: 2021,
   },
   {
+    id: "reboot",
+    kind: "teaching",
+    title: { es: "Full Stack Developer / Docente", en: "Full Stack Developer / Teacher" },
+    place: "Reboot Academy",
+    start: 2022,
+    end: 2025,
+  },
+  {
+    id: "powerbim",
+    kind: "work",
+    title: { es: "Full Stack Developer", en: "Full Stack Developer" },
+    place: "PowerBIM",
+    start: 2025,
+    end: null,
+  },
+];
+
+export const education: readonly CareerEntry[] = [
+  {
+    id: "ulpgc",
+    kind: "study",
+    title: { es: "Grado en Ingeniería Mecánica", en: "Degree in Mechanical Engineering" },
+    place: "Universidad de Las Palmas de Gran Canaria",
+    start: 2006,
+    end: 2018,
+  },
+  {
     id: "bootcamp",
     kind: "study",
-    title: { es: "Bootcamp de desarrollo full-stack", en: "Full-stack development bootcamp" },
+    title: { es: "Bootcamp de Full Stack Developer", en: "Full Stack Developer bootcamp" },
     place: "Reboot Academy",
     start: 2021,
     end: 2022,
   },
   {
-    id: "reboot",
-    kind: "teaching",
-    title: { es: "Desarrollador full-stack y docente", en: "Full-stack developer and teacher" },
-    place: "Reboot Academy",
-    start: 2022,
-    end: 2025,
-    detail: {
-      es: "Proyectos como ElectroTaro (recarga de coches eléctricos con OCPP, WebSockets y Stellar) y Atrimonitor (análisis territorial con Leaflet y D3), y clases en el bootcamp.",
-      en: "Projects such as ElectroTaro (EV charging with OCPP, WebSockets and Stellar) and Atrimonitor (territorial analysis with Leaflet and D3), and teaching at the bootcamp.",
-    },
-  },
-  {
-    id: "powerbim",
-    kind: "work",
-    title: { es: "Desarrollador full-stack", en: "Full-stack developer" },
-    place: "PowerBIM",
-    start: 2025,
-    end: null,
-    detail: {
-      es: "App móvil de incidencias en edificios con React Native y Expo: lectura de QR, realidad aumentada e integración con Autodesk Construction Cloud.",
-      en: "Mobile app for building incidents with React Native and Expo: QR scanning, augmented reality and Autodesk Construction Cloud integration.",
-    },
-  },
-  {
     id: "viu",
     kind: "study",
     title: { es: "Máster en Inteligencia Artificial", en: "Master's in Artificial Intelligence" },
-    place: "Universidad Internacional de Valencia",
+    place: "Universidad Internacional de Valencia (VIU)",
     start: 2025,
-    end: null,
+    end: 2026,
+    endMonth: 10,
   },
 ];
 

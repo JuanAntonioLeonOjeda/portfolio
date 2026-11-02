@@ -1,17 +1,18 @@
 /**
  * Every user-facing string of the page chrome, in Spanish (the source language). Content
- * (projects, career, skills) lives in src/content/ with both languages side by side.
+ * (projects, experience, education, skills) lives in src/content/ with both languages side by side.
  */
 export const es = {
   app: {
     skipToContent: "Saltar al contenido",
     description:
-      "Portfolio de Juan Antonio León Ojeda, desarrollador full-stack: proyectos, trayectoria y stack.",
+      "Portfolio de Juan Antonio León Ojeda, desarrollador full-stack: proyectos, experiencia, formación y stack.",
   },
   nav: {
     label: "Secciones",
     projects: "Proyectos",
-    career: "Trayectoria",
+    experience: "Experiencia",
+    education: "Formación",
     stack: "Stack",
     contact: "Contacto",
   },
@@ -35,10 +36,18 @@ export const es = {
     privateRepo: "Repositorio privado",
     phases: (done: number, total: number): string => `${done} de ${total} fases terminadas`,
   },
+  experience: {
+    heading: "Experiencia",
+    lead: "De técnico comercial a desarrollador, pasando por la docencia.",
+    chartLabel: "Cronología de trabajos",
+  },
+  education: {
+    heading: "Formación",
+    lead: "De la ingeniería mecánica a la inteligencia artificial.",
+    chartLabel: "Cronología de estudios",
+  },
+  /** Shared by both timelines. */
   career: {
-    heading: "Trayectoria",
-    lead: "De la ingeniería mecánica al software, pasando por la docencia.",
-    chartLabel: "Cronología de estudios y trabajos",
     present: "hoy",
     kinds: { work: "Trabajo", teaching: "Trabajo y docencia", study: "Formación" },
     legend: "Leyenda",

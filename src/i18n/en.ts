@@ -5,12 +5,13 @@ export const en: Messages = {
   app: {
     skipToContent: "Skip to content",
     description:
-      "Portfolio of Juan Antonio León Ojeda, full-stack developer: projects, career and stack.",
+      "Portfolio of Juan Antonio León Ojeda, full-stack developer: projects, experience, education and stack.",
   },
   nav: {
     label: "Sections",
     projects: "Projects",
-    career: "Career",
+    experience: "Experience",
+    education: "Education",
     stack: "Stack",
     contact: "Contact",
   },
@@ -34,10 +35,17 @@ export const en: Messages = {
     privateRepo: "Private repository",
     phases: (done: number, total: number): string => `${done} of ${total} phases done`,
   },
+  experience: {
+    heading: "Experience",
+    lead: "From technical sales to software, by way of teaching.",
+    chartLabel: "Timeline of jobs",
+  },
+  education: {
+    heading: "Education",
+    lead: "From mechanical engineering to artificial intelligence.",
+    chartLabel: "Timeline of studies",
+  },
   career: {
-    heading: "Career",
-    lead: "From mechanical engineering to software, by way of teaching.",
-    chartLabel: "Timeline of studies and jobs",
     present: "now",
     kinds: { work: "Work", teaching: "Work and teaching", study: "Education" },
     legend: "Legend",

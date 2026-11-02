@@ -1,1 +1,1 @@
-export { Career } from "./Career";
+export { Education, Experience } from "./Career";

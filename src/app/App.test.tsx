@@ -18,7 +18,7 @@ describe("App", () => {
     expect(
       screen.getByRole("heading", { level: 1, name: "Juan Antonio León Ojeda" }),
     ).toBeInTheDocument();
-    for (const name of ["Proyectos", "Trayectoria", "Stack", "Hablemos"]) {
+    for (const name of ["Proyectos", "Experiencia", "Formación", "Stack", "Hablemos"]) {
       expect(screen.getByRole("heading", { level: 2, name })).toBeInTheDocument();
     }
     for (const project of projects) {
@@ -40,7 +40,7 @@ describe("App", () => {
     const targets = within(nav)
       .getAllByRole("link")
       .map((link) => link.getAttribute("href"));
-    expect(targets).toEqual(["#projects", "#career", "#stack", "#contact"]);
+    expect(targets).toEqual(["#projects", "#experience", "#education", "#stack", "#contact"]);
     for (const target of targets) {
       expect(document.querySelector(target ?? "")).not.toBeNull();
     }

@@ -16,12 +16,13 @@ src/
     types.ts            # Lang, Localized, Project, CareerEntry, SkillGroup
     profile.ts          # name, role, summary, public links
     projects.ts         # featured project first
-    career.ts           # career entries (chronological) and skill groups
+    career.ts           # experience and education (chronological) and skill groups
   design/               # tokens (light/dark), base styles
   i18n/                 # es.ts (source, defines Messages), en.ts, index.ts
   features/
     shell/              # header, footer, theme and language stores
-    hero/ projects/ career/ stack/ contact/   # one section each
+    hero/ projects/ stack/ contact/   # one section each
+    career/             # two sections, Experience and Education, sharing a CareerTimeline
     ui/                 # Section, ExternalLink
 ```
 

@@ -7,8 +7,8 @@ description: What this project is, its scope, commands, the Docker rebuild rule,
 ## What this is
 
 **Portfolio**: the public personal site of Juan Antonio León Ojeda, full-stack developer
-finishing a master's in AI. One page in Spanish and English: who he is, the featured projects,
-the career, the stack and how to get in touch.
+with a master's in AI (finished October 2026). One page in Spanish and English: who he is,
+the featured projects, his experience and education, the stack and how to get in touch.
 
 - A static single-page app published on **GitHub Pages** from `main` (ADR-0001). No backend,
   no accounts, **no cookies, no analytics**.

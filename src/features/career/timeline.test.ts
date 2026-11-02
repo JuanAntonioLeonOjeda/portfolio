@@ -63,6 +63,13 @@ describe("placeSpan", () => {
     expect(first.left + first.width).toBe(second.left);
   });
 
+  it("ends a span with a known month at the end of that month", () => {
+    // 2025 → end of October 2026 is 1 + 10/12 years: 18.33 % of a ten-year axis.
+    const bar = placeSpan({ start: 2025, end: 2026, endMonth: 10 }, axis, now);
+    expect(bar.left).toBe(80);
+    expect(bar.width).toBeCloseTo(18.333, 3);
+  });
+
   it("ends an ongoing span at now", () => {
     const bar = placeSpan({ start: 2025, end: null }, axis, now);
     expect(bar.isOngoing).toBe(true);
