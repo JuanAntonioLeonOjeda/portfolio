@@ -2,6 +2,7 @@ import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it } from "vitest";
 
+import { profile } from "@/content/profile";
 import { projects } from "@/content/projects";
 
 import { App } from "./App";
@@ -23,6 +24,14 @@ describe("App", () => {
     for (const project of projects) {
       expect(screen.getByRole("heading", { level: 3, name: project.name })).toBeInTheDocument();
     }
+  });
+
+  it("opens an email from the hero's call to action", () => {
+    render(<App />);
+    expect(screen.getByRole("link", { name: "Escríbeme" })).toHaveAttribute(
+      "href",
+      `mailto:${profile.email}`,
+    );
   });
 
   it("links the header to each section", () => {
