@@ -2,12 +2,17 @@ import type { WorkProjectGroup } from "./types";
 
 /**
  * Sources:
- * - Reboot Academy: the author's CV (ai-job-search/documents/cv), section "Proyectos". The
- *   "otros proyectos" have only a name and a stack there, so that is all they show.
+ * - Reboot Academy: the author's CV (ai-job-search/documents/cv), section "Proyectos". Evente
+ *   and the academy's website: their CV stacks, plus the author (Evente's weekly updates,
+ *   client promotions and Stripe; his maintenance of the website, and its forms feeding
+ *   ActiveCampaign through Zapier) and the sites themselves, read on 2 November 2026
+ *   (evente.es: search by date, location, type and distance, the private area;
+ *   reboot.academy: the bootcamps, the enrolment and contact forms).
  * - PowerBIM: the CV for the mobile app's features; the package manifests the author shared
  *   (2 November 2026) for the stacks; the author for what each project does and his part in
- *   it (all of the app; most of the platform's front end and its AI part, so the platform's
- *   features list only those, while its stack shows the whole project's main technologies).
+ *   it (all of the app and of the MQTT platform, which only describes what it does; most of
+ *   the web platform's front end and its AI part, so its features list only those, while its
+ *   stack shows the whole project's main technologies).
  * Groups in the order of `experience`; content.test.ts checks it.
  */
 export const workProjects: readonly WorkProjectGroup[] = [
@@ -64,22 +69,55 @@ export const workProjects: readonly WorkProjectGroup[] = [
         ],
         stack: ["React", "Express", "MongoDB", "Leaflet", "D3"],
       },
-    ],
-    others: [
       {
         id: "evente",
         name: { es: "Evente", en: "Evente" },
-        stack: ["Nuxt", "Express", "MongoDB", "Web scraping"],
+        description: {
+          es: "Web de gestión de eventos en Canarias, que se actualiza cada semana.",
+          en: "Event management website for the Canary Islands, updated every week.",
+        },
+        features: [
+          {
+            es: "Agenda de eventos que se actualiza semanalmente.",
+            en: "An events listing updated weekly.",
+          },
+          {
+            es: "Búsqueda de eventos y promociones por fecha, ubicación o tipo, y por cercanía.",
+            en: "Search for events and promotions by date, location or type, and by distance.",
+          },
+          {
+            es: "Promoción de eventos de clientes, con pago a través de Stripe.",
+            en: "Promotion of clients' events, paid through Stripe.",
+          },
+          {
+            es: "Área privada para crear y gestionar eventos, promociones y artículos.",
+            en: "A private area to create and manage events, promotions and articles.",
+          },
+        ],
+        stack: ["Nuxt", "Express", "MongoDB", "Web scraping", "Stripe"],
       },
       {
         id: "reboot-web",
         name: { es: "Web de Reboot Academy", en: "Reboot Academy website" },
-        stack: ["Next.js", "Zapier"],
-      },
-      {
-        id: "reboot-talent",
-        name: { es: "Reboot Talent", en: "Reboot Talent" },
-        stack: ["Vue.js", "Express", "MongoDB", "OpenAI"],
+        description: {
+          es: "La web de la academia. Me encargaba de su mantenimiento.",
+          en: "The academy's website. I was in charge of maintaining it.",
+        },
+        features: [
+          {
+            es: "Mantenimiento de la web y actualización de la información de los bootcamps.",
+            en: "Website maintenance and keeping the bootcamps' information up to date.",
+          },
+          {
+            es: "Cambios de estilos.",
+            en: "Style changes.",
+          },
+          {
+            es: "Formularios de inscripción y contacto conectados con ActiveCampaign mediante Zapier.",
+            en: "Enrolment and contact forms connected to ActiveCampaign through Zapier.",
+          },
+        ],
+        stack: ["Next.js", "Zapier", "ActiveCampaign"],
       },
     ],
   },

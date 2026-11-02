@@ -41,7 +41,6 @@ export const en: Messages = {
     lead: "What I have built at work, at Reboot Academy and PowerBIM.",
     features: "Main features",
     stack: "Stack",
-    others: "Other projects",
     count: (n: number): string => (n === 1 ? "1 project" : `${n} projects`),
   },
   experience: {

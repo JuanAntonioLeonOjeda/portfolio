@@ -2,13 +2,7 @@ import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 
 import { experience } from "@/content/career";
-import {
-  pick,
-  type Lang,
-  type MinorWorkProject,
-  type WorkProject,
-  type WorkProjectGroup,
-} from "@/content/types";
+import { pick, type Lang, type WorkProject, type WorkProjectGroup } from "@/content/types";
 import { workProjects } from "@/content/work-projects";
 import { useLanguage, useMessages } from "@/features/shell";
 import { TechLogo } from "@/features/stack";
@@ -33,8 +27,8 @@ export function WorkProjects(): React.JSX.Element {
 
 /**
  * One employer, folded: its name, years (from its `experience` entry, painted in that entry's
- * hue, as in the timeline) and how many projects it holds. Unfolded: the projects as cards and
- * the smaller ones as a list. A disclosure button inside the heading, like the personal cards.
+ * hue, as in the timeline) and how many projects it holds. Unfolded: the projects as cards. A
+ * disclosure button inside the heading, like the personal cards.
  */
 function Group({ group }: { group: WorkProjectGroup }): React.JSX.Element | null {
   const lang = useLanguage();
@@ -45,7 +39,7 @@ function Group({ group }: { group: WorkProjectGroup }): React.JSX.Element | null
 
   const headingId = `work-${group.id}`;
   const panelId = `work-${group.id}-projects`;
-  const count = group.projects.length + (group.others?.length ?? 0);
+  const count = group.projects.length;
 
   return (
     <section
@@ -81,7 +75,6 @@ function Group({ group }: { group: WorkProjectGroup }): React.JSX.Element | null
             </li>
           ))}
         </ul>
-        {group.others !== undefined && <OtherProjects projects={group.others} lang={lang} />}
       </div>
     </section>
   );
@@ -103,30 +96,6 @@ function ProjectCard({ project, lang }: { project: WorkProject; lang: Lang }): R
       <h5 className={styles.subheading}>{t.workProjects.stack}</h5>
       <StackList items={project.stack} />
     </article>
-  );
-}
-
-function OtherProjects({
-  projects,
-  lang,
-}: {
-  projects: readonly MinorWorkProject[];
-  lang: Lang;
-}): React.JSX.Element {
-  const t = useMessages();
-
-  return (
-    <div className={styles.others}>
-      <h4 className={styles.subheading}>{t.workProjects.others}</h4>
-      <ul>
-        {projects.map((project) => (
-          <li key={project.id}>
-            <span className={styles.otherName}>{pick(project.name, lang)}</span>
-            <StackList items={project.stack} />
-          </li>
-        ))}
-      </ul>
-    </div>
   );
 }
 
