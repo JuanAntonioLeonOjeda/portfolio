@@ -108,10 +108,7 @@ describe("content", () => {
       expect(jobs, id).toContain(id);
     }
     expect(groups).toEqual([...groups].sort((a, b) => jobs.indexOf(a) - jobs.indexOf(b)));
-    const ids = workProjects.flatMap((group) => [
-      ...group.projects.map((project) => project.id),
-      ...(group.others ?? []).map((project) => project.id),
-    ]);
+    const ids = workProjects.flatMap((group) => group.projects.map((project) => project.id));
     expect(new Set(ids).size).toBe(ids.length);
   });
 

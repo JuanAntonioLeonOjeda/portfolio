@@ -6,6 +6,7 @@ import {
   FileImage,
   HardDrive,
   Inbox,
+  Mail,
   Rotate3d,
   ScanSearch,
   Sparkles,
@@ -77,8 +78,9 @@ export const THEME_COLOURS = {
 
 /**
  * A technology's mark: its Simple Icons logo, or a generic icon when there is no honest logo
- * (Simple Icons dropped Amazon's and OpenAI's marks; WebSockets is a protocol, not Socket.io;
- * AR and web scraping are techniques, not products; pgvector, pydicom and fl_chart have none).
+ * (Simple Icons dropped Amazon's and OpenAI's marks and has none for ActiveCampaign, pgvector,
+ * pydicom or fl_chart; WebSockets is a protocol, not Socket.io; AR and web scraping are
+ * techniques, not products).
  */
 export type Logo =
   | { readonly kind: "brand"; readonly path: string; readonly light: string; readonly dark: string }
@@ -164,6 +166,7 @@ export const LOGOS: Readonly<Record<string, Logo>> = {
   Stellar: brand(siStellar),
   Zapier: brand(siZapier),
   OpenAI: { kind: "generic", icon: Sparkles },
+  ActiveCampaign: { kind: "generic", icon: Mail },
   AR: { kind: "generic", icon: Rotate3d },
   "Web scraping": { kind: "generic", icon: ScanSearch },
 };

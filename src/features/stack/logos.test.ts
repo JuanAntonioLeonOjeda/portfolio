@@ -61,7 +61,7 @@ describe("LOGOS", () => {
 
   it("has a mark for every technology of the work projects", () => {
     for (const group of workProjects) {
-      for (const project of [...group.projects, ...(group.others ?? [])]) {
+      for (const project of group.projects) {
         for (const item of project.stack) {
           expect(LOGOS[item], `${project.id}: ${item}`).toBeDefined();
         }

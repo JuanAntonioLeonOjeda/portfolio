@@ -110,16 +110,8 @@ export interface WorkProject {
   readonly stack: readonly string[];
 }
 
-/** A smaller project at the same job, listed by name and stack only (as the CV does). */
-export interface MinorWorkProject {
-  readonly id: string;
-  readonly name: Localized;
-  readonly stack: readonly string[];
-}
-
 /** The projects of one job; `id` is that job's entry in `experience` (it gives the years). */
 export interface WorkProjectGroup {
   readonly id: string;
   readonly projects: readonly WorkProject[];
-  readonly others?: readonly MinorWorkProject[];
 }

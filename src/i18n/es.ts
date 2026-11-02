@@ -42,7 +42,6 @@ export const es = {
     lead: "Lo que he construido en el trabajo, en Reboot Academy y en PowerBIM.",
     features: "Funcionalidades principales",
     stack: "Stack",
-    others: "Otros proyectos",
     count: (n: number): string => (n === 1 ? "1 proyecto" : `${n} proyectos`),
   },
   experience: {
