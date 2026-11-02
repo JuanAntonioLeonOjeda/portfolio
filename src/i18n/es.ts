@@ -63,7 +63,11 @@ export const es = {
   },
   stack: {
     heading: "Stack",
-    lead: "Con lo que trabajo a diario y lo que he usado en proyectos.",
+    lead: "Arriba, lo que he usado en el último año; debajo, las anteriores. Por columnas, si ha sido en el trabajo, en mis proyectos o en ambos.",
+    recent: "Último año",
+    earlier: "Anteriores",
+    columns: { work: "Profesional", both: "Profesional y personal", personal: "Personal" },
+    unplaced: "También:",
   },
   contact: {
     heading: "Hablemos",

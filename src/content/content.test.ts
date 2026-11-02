@@ -120,6 +120,19 @@ describe("content", () => {
     expect(education.every((entry) => entry.kind === "study")).toBe(true);
   });
 
+  it("dates and places every skill in a valid way", () => {
+    for (const item of skills.flatMap((group) => group.items)) {
+      expect(new Set(item.contexts).size, item.name).toBe(item.contexts.length);
+      if (typeof item.lastUsed === "string") {
+        expect(item.lastUsed, item.name).toMatch(/^\d{4}-(0[1-9]|1[0-2])$/);
+      }
+      // A date says when it was used, so it must also say where.
+      if (item.lastUsed !== undefined) {
+        expect(item.contexts.length, item.name).toBeGreaterThan(0);
+      }
+    }
+  });
+
   it("does not publish a phone number", () => {
     const text = JSON.stringify({ profile, projects, workProjects, experience, education, skills });
     expect(text).not.toMatch(/\b[6-9]\d{2}\s?\d{3}\s?\d{3}\b/);

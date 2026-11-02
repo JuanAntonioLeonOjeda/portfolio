@@ -80,10 +80,24 @@ export interface CareerEntry {
   readonly endMonth?: number;
 }
 
+/** Where a technology has been used: at a job, in personal projects (the master's included). */
+export type SkillContext = "work" | "personal";
+
+export interface Skill {
+  /** As in the logos map (src/features/stack/logos.ts). */
+  readonly name: string;
+  readonly contexts: readonly SkillContext[];
+  /**
+   * Last month it was used, "YYYY-MM"; `null` while it is in use. Left out when no source says
+   * (then it never counts as recent).
+   */
+  readonly lastUsed?: string | null;
+}
+
 export interface SkillGroup {
   readonly id: string;
   readonly title: Localized;
-  readonly items: readonly string[];
+  readonly items: readonly Skill[];
 }
 
 /** A project built at a job: what it is, what it does and what it is built with. */
