@@ -45,6 +45,19 @@ export interface ProjectPreview {
   readonly alt: Localized;
 }
 
+/**
+ * Portrait phone screenshots (`projects/<id>-<n>.webp`), shown side by side in the same 16:10
+ * frame as a desktop screenshot.
+ */
+export interface PhonePreview {
+  readonly phones: readonly ProjectPreview[];
+}
+
+/** Every file a preview points at, whatever its kind. */
+export function previewFiles(preview: ProjectPreview | PhonePreview): readonly string[] {
+  return "phones" in preview ? preview.phones.map((phone) => phone.file) : [preview.file];
+}
+
 export interface Project {
   readonly id: string;
   readonly name: string;
@@ -58,9 +71,11 @@ export interface Project {
   readonly stack: readonly string[];
   readonly status: ProjectStatus;
   readonly stats?: readonly ProjectStat[];
-  readonly preview?: ProjectPreview;
-  /** The project's public website or live demo (https). */
+  readonly preview?: ProjectPreview | PhonePreview;
+  /** The project's public website, live demo or download page (https). */
   readonly site?: string;
+  /** What the site link says when it is not a website (a download); "Ver la web" otherwise. */
+  readonly siteLabel?: Localized;
   /** Only public repositories: a private one is never linked. */
   readonly code?: readonly ExternalLink[];
 }

@@ -1,6 +1,12 @@
 import { Globe, Image as ImageIcon } from "lucide-react";
 
-import { pick, type Lang, type Project, type ProjectStatus } from "@/content/types";
+import {
+  pick,
+  type Lang,
+  type Project,
+  type ProjectPreview as ProjectPreviewData,
+  type ProjectStatus,
+} from "@/content/types";
 import { useLanguage, useMessages } from "@/features/shell";
 import { TechLogo } from "@/features/stack";
 import { ExternalLink } from "@/features/ui";
@@ -97,11 +103,33 @@ function ProjectPreview({ project, lang }: { project: Project; lang: Lang }): Re
     );
   }
 
+  if ("phones" in project.preview) {
+    return (
+      <div className={styles.preview} data-phones>
+        {project.preview.phones.map((phone) => (
+          <Screenshot key={phone.file} shot={phone} lang={lang} className={styles.phone} />
+        ))}
+      </div>
+    );
+  }
+
+  return <Screenshot shot={project.preview} lang={lang} className={styles.preview} />;
+}
+
+function Screenshot({
+  shot,
+  lang,
+  className,
+}: {
+  shot: ProjectPreviewData;
+  lang: Lang;
+  className: string | undefined;
+}): React.JSX.Element {
   return (
     <img
-      className={styles.preview}
-      src={`${import.meta.env.BASE_URL}${project.preview.file}`}
-      alt={pick(project.preview.alt, lang)}
+      className={className}
+      src={`${import.meta.env.BASE_URL}${shot.file}`}
+      alt={pick(shot.alt, lang)}
       loading="lazy"
       decoding="async"
     />
@@ -118,7 +146,7 @@ function ProjectLinks({ project, lang }: { project: Project; lang: Lang }): Reac
       <li>
         {project.site !== undefined ? (
           <ExternalLink href={project.site} className={styles.siteLink}>
-            {t.projects.site}
+            {project.siteLabel !== undefined ? pick(project.siteLabel, lang) : t.projects.site}
           </ExternalLink>
         ) : (
           // Same place and shape as the button, but not a link: there is nowhere to go yet.
