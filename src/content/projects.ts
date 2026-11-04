@@ -7,7 +7,8 @@ import type { ExternalLink, Project } from "./types";
  *   ../datos/front (README, src/i18n/es.ts for the name). 8 phases, still in development.
  * - Energy Analyzer: ../aws/README.md (roadmap, 2 of 7 steps ticked).
  * - EV charging IoT: ../traffic/docs/project-brief.md (phase plan: 8 phases, 1–2 done).
- * - Stock app: ../stock-app/README.md and specs/.
+ * - Stock app: ../stock-app/README.md and specs/; the APK is the v1.0.0 GitHub release, built
+ *   from main (17b6852) on 4 November 2026; the three phone screenshots are from the author.
  * The first project is the featured one. Previews go in public/projects/<id>.webp.
  */
 
@@ -205,6 +206,33 @@ export const projects: readonly Project[] = [
       kind: "ongoing",
       note: { es: "En desarrollo", en: "In development" },
     },
+    preview: {
+      phones: [
+        {
+          file: "projects/stock-app-1.webp",
+          alt: {
+            es: "Pantalla de inicio: el buscador por nombre o ticker y las acciones favoritas, cada una con su precio, su veredicto y su nota sobre 10.",
+            en: "Home screen: the search by name or ticker and the favourite stocks, each with its price, verdict and score out of 10.",
+          },
+        },
+        {
+          file: "projects/stock-app-2.webp",
+          alt: {
+            es: "Paso 2 de 9 de la lección sobre el crecimiento del beneficio a 3 años: la fórmula explicada con un ejemplo inventado, de 100 M€ a 133,1 M€, un 10 % de crecimiento anual compuesto.",
+            en: "Step 2 of 9 of the lesson on 3-year earnings growth: the formula explained with a made-up example, from €100M to €133.1M, 10% compound annual growth.",
+          },
+        },
+        {
+          file: "projects/stock-app-3.webp",
+          alt: {
+            es: "Resumen de BME:SAN: si está cara respecto a lo que gana (favorable, PER 9,5x) y cómo va el precio a largo plazo (desfavorable), con el gráfico intradía de la sesión.",
+            en: "BME:SAN summary: whether it is expensive for what it earns (favourable, P/E 9.5x) and the long-term price trend (unfavourable), with the session's intraday chart.",
+          },
+        },
+      ],
+    },
+    site: "https://github.com/JuanAntonioLeonOjeda/app-stock/releases/latest",
+    siteLabel: { es: "Descargar para Android (APK)", en: "Download for Android (APK)" },
     code: [repo("app-stock")],
   },
 ];
