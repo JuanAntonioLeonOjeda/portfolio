@@ -5,7 +5,7 @@ import { describe, expect, it } from "vitest";
 import { education, experience, skills } from "./career";
 import { profile } from "./profile";
 import { projects } from "./projects";
-import type { Localized } from "./types";
+import { previewFiles, type Localized } from "./types";
 import { workProjects } from "./work-projects";
 
 /** Every Localized value reachable from a content object, with its path for the message. */
@@ -67,10 +67,12 @@ describe("content", () => {
   it("has every declared preview in public/, named after its project", () => {
     for (const project of projects) {
       if (project.preview === undefined) continue;
-      expect(project.preview.file, project.id).toMatch(
-        new RegExp(`^projects/${project.id}\\.(webp|avif|png|jpg)$`),
-      );
-      expect(existsSync(`public/${project.preview.file}`), project.preview.file).toBe(true);
+      for (const file of previewFiles(project.preview)) {
+        expect(file, project.id).toMatch(
+          new RegExp(`^projects/${project.id}(-\\d+)?\\.(webp|avif|png|jpg)$`),
+        );
+        expect(existsSync(`public/${file}`), file).toBe(true);
+      }
     }
   });
 

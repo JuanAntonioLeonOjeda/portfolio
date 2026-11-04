@@ -5,6 +5,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { profile } from "@/content/profile";
 import { projects } from "@/content/projects";
 import { workProjects } from "@/content/work-projects";
+import { previewFiles } from "@/content/types";
 
 import { App } from "./App";
 
@@ -185,6 +186,12 @@ describe("App", () => {
         expect(link).toHaveAttribute("target", "_blank");
         expect(link).toHaveAttribute("rel", "noopener noreferrer");
       }
+      if (project.site !== undefined) {
+        expect(
+          detail.querySelector(`a[href="${project.site}"]`)?.textContent,
+          project.id,
+        ).toContain(project.siteLabel?.es ?? "Ver la web");
+      }
       const text = detail.textContent;
       expect(text.includes("Repositorio privado"), project.id).toBe(
         (project.code ?? []).length === 0,
@@ -194,7 +201,7 @@ describe("App", () => {
       );
       expect(text.includes("Web próximamente"), project.id).toBe(project.site === undefined);
       expect(detail.querySelectorAll("img"), project.id).toHaveLength(
-        project.preview === undefined ? 0 : 1,
+        project.preview === undefined ? 0 : previewFiles(project.preview).length,
       );
       const placeholder = within(detail).queryByText("Web próximamente");
       expect(placeholder?.closest("a") ?? null).toBeNull();
