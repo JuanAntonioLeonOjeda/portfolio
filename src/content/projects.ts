@@ -2,7 +2,8 @@ import type { ExternalLink, Project } from "./types";
 
 /**
  * Sources, all read from the repositories:
- * - LumosNet: ../../master/tfm (README, frontend/src/docs/chapters 03 and 08).
+ * - LumosNet: ../../master/tfm (README, frontend/src/docs/chapters 03 and 08); the live demo
+ *   on Hugging Face Spaces and its screenshot, both from the author (2 November 2026).
  * - InContext: ../datos/back (README, docs/project-brief.md, ADR-0016, ADR-0020) and
  *   ../datos/front (README, src/i18n/es.ts for the name). 8 phases, still in development.
  * - Energy Analyzer: ../aws/README.md (roadmap, 2 of 7 steps ticked).
@@ -74,6 +75,14 @@ export const projects: readonly Project[] = [
         label: { es: "sensibilidad a osteoporosis", en: "sensitivity to osteoporosis" },
       },
     ],
+    preview: {
+      file: "projects/lumosnet.webp",
+      alt: {
+        es: "LumosNet analizando una radiografía lumbar: clase predicha, densidad mineral ósea estimada, probabilidad de cada clase y el mapa Grad-CAM de las zonas en las que se fijó el modelo.",
+        en: "LumosNet analysing a lumbar X-ray: predicted class, estimated bone mineral density, the probability of each class and the Grad-CAM map of the areas the model looked at.",
+      },
+    },
+    site: "https://juanan237-lumosnet.hf.space/",
     code: [repo("TFM")],
   },
   {
