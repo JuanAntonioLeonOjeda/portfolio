@@ -5,7 +5,8 @@ import type { ExternalLink, Project } from "./types";
  * - LumosNet: ../../master/tfm (README, frontend/src/docs/chapters 03 and 08); the live demo
  *   on Hugging Face Spaces and its screenshot, both from the author (2 November 2026).
  * - InContext: ../datos/back (README, docs/project-brief.md, ADR-0016, ADR-0020) and
- *   ../datos/front (README, src/i18n/es.ts for the name). 8 phases, still in development.
+ *   ../datos/front (README, src/i18n/es.ts for the name). 8 phases, still in development. The
+ *   live site on Hugging Face Spaces and its screenshot, both from the author (6 November 2026).
  * - Energy Analyzer: ../aws/README.md (roadmap, 2 of 7 steps ticked).
  * - EV charging IoT: ../traffic/docs/project-brief.md (phase plan: 8 phases, 1–2 done).
  * - Stock app: ../stock-app/README.md and specs/; the APK is the v1.0.0 GitHub release, built
@@ -128,6 +129,14 @@ export const projects: readonly Project[] = [
       kind: "ongoing",
       note: { es: "En desarrollo", en: "In development" },
     },
+    preview: {
+      file: "projects/incontext.webp",
+      alt: {
+        es: "Portada de InContext: el mapa de España con el partido o la coalición que gobierna cada comunidad autónoma, un selector para ir a una comunidad y tres cifras: 19 comunidades, 9 partidos en algún gobierno y 8 gobiernos de coalición.",
+        en: "InContext's home page: the map of Spain with the party or coalition governing each region, a picker to go to a region and three figures: 19 regions, 9 parties in some government and 8 coalition governments.",
+      },
+    },
+    site: "https://juanan237-incontext.hf.space/",
     code: [
       {
         label: { es: "Código del back-end", en: "Back-end code" },
