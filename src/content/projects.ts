@@ -7,7 +7,9 @@ import type { ExternalLink, Project } from "./types";
  * - InContext: ../datos/back (README, docs/project-brief.md, ADR-0016, ADR-0020) and
  *   ../datos/front (README, src/i18n/es.ts for the name). 8 phases, still in development. The
  *   live site on Hugging Face Spaces and its screenshot, both from the author (6 November 2026).
- * - Energy Analyzer: ../aws/README.md (roadmap, 2 of 7 steps ticked).
+ * - Energy Analyzer: ../aws/README.md and frontend/package.json (React). Finished, per the
+ *   author; the live site on CloudFront and its screenshot (a report of the app's synthetic
+ *   example month, not personal data), both from the author (10 November 2026).
  * - EV charging IoT: ../traffic/docs/project-brief.md (phase plan: 8 phases, 1–2 done).
  * - Stock app: ../stock-app/README.md and specs/; the APK is the v1.0.0 GitHub release, built
  *   from main (17b6852) on 4 November 2026; the three phone screenshots are from the author.
@@ -171,8 +173,29 @@ export const projects: readonly Project[] = [
         en: "Least-privilege IAM and keyless CI/CD with OIDC",
       },
     ],
-    stack: ["AWS CDK", "TypeScript", "Lambda", "S3", "SQS", "DynamoDB", "Jest"],
-    status: { kind: "phases", done: 2, total: 7 },
+    stack: [
+      "AWS CDK",
+      "TypeScript",
+      "Lambda",
+      "S3",
+      "SQS",
+      "DynamoDB",
+      "React",
+      "GitHub Actions",
+      "Jest",
+    ],
+    status: {
+      kind: "done",
+      note: { es: "Terminado y desplegado", en: "Finished and deployed" },
+    },
+    preview: {
+      file: "projects/energy-analyzer.webp",
+      alt: {
+        es: "Informe de Energy Analyzer con el mes de ejemplo: el consumo medio de cada hora del día en barras coloreadas por periodo (valle, llano y punta), con el pico a las 20:00, y lo que habría costado ese consumo con tres tarifas: 42,35 € con fijo por periodos, 44,88 € con precio fijo y 69,82 € con PVPC.",
+        en: "An Energy Analyzer report for the example month: the average consumption for each hour of the day as bars coloured by period (off-peak, standard and peak), peaking at 20:00, and what that consumption would have cost on three tariffs: €42.35 on a fixed price by period, €44.88 on a fixed price and €69.82 on PVPC.",
+      },
+    },
+    site: "https://d2yp1kry9qeuh9.cloudfront.net/",
   },
   {
     id: "ev-charging-iot",
